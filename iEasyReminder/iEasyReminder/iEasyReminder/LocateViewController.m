@@ -1,18 +1,18 @@
 //
-//  SecondViewController.m
+//  FirstViewController.m
 //  iEasyReminder
 //
 //  Created by Ding Orlando on 4/7/14.
 //  Copyright (c) 2014 Ding Orlando. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "LocateViewController.h"
 
-@interface SecondViewController ()
+@interface LocateViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation LocateViewController
 
 - (void)viewDidLoad
 {

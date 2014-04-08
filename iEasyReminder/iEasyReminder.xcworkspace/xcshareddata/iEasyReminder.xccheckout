@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6E61D13F-215D-493B-82F1-E4ADA525D7F5</string>
+	<string>23C9293A-8491-41EE-8B37-EB15962D08E3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>iEasyReminder</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/llv22/iOS-SDK.git</string>
+	<string>ssh://github.com/llv22/appleDev.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F12E36BF18F6CE8300466D26 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12E36BE18F6CE8300466D26 /* AdSupport.framework */; };
+		F12E36C118F6CE8F00466D26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12E36C018F6CE8F00466D26 /* SystemConfiguration.framework */; };
+		F12E36C318F6CEA400466D26 /* libEstimoteSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F12E36C218F6CEA400466D26 /* libEstimoteSDK.a */; };
 		F142DB7518F2B21F00B2DE66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142DB7418F2B21F00B2DE66 /* Foundation.framework */; };
 		F142DB7718F2B21F00B2DE66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142DB7618F2B21F00B2DE66 /* CoreGraphics.framework */; };
 		F142DB7918F2B21F00B2DE66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142DB7818F2B21F00B2DE66 /* UIKit.framework */; };
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F12E36BE18F6CE8300466D26 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		F12E36C018F6CE8F00466D26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F12E36C218F6CEA400466D26 /* libEstimoteSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEstimoteSDK.a; path = ../../EstimoteSDK/libEstimoteSDK.a; sourceTree = "<group>"; };
 		F142DB7118F2B21F00B2DE66 /* iEasyReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iEasyReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F142DB7418F2B21F00B2DE66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F142DB7618F2B21F00B2DE66 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,6 +70,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F12E36C318F6CEA400466D26 /* libEstimoteSDK.a in Frameworks */,
+				F12E36C118F6CE8F00466D26 /* SystemConfiguration.framework in Frameworks */,
+				F12E36BF18F6CE8300466D26 /* AdSupport.framework in Frameworks */,
 				F142DB7718F2B21F00B2DE66 /* CoreGraphics.framework in Frameworks */,
 				F142DB7918F2B21F00B2DE66 /* UIKit.framework in Frameworks */,
 				F142DB7518F2B21F00B2DE66 /* Foundation.framework in Frameworks */,
@@ -106,6 +115,9 @@
 		F142DB7318F2B21F00B2DE66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F12E36C218F6CEA400466D26 /* libEstimoteSDK.a */,
+				F12E36C018F6CE8F00466D26 /* SystemConfiguration.framework */,
+				F12E36BE18F6CE8300466D26 /* AdSupport.framework */,
 				F142DB7418F2B21F00B2DE66 /* Foundation.framework */,
 				F142DB7618F2B21F00B2DE66 /* CoreGraphics.framework */,
 				F142DB7818F2B21F00B2DE66 /* UIKit.framework */,
@@ -208,6 +220,11 @@
 				TargetAttributes = {
 					F142DB7018F2B21F00B2DE66 = {
 						DevelopmentTeam = 84Z8KQ6A9Q;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					F142DB9418F2B21F00B2DE66 = {
 						TestTargetID = F142DB7018F2B21F00B2DE66;
@@ -390,7 +407,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iEasyReminder/iEasyReminder-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../EstimoteSDK/Headers,
+				);
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/llv22/Documents/02_apple_programming/05_appleDevs/00_iOSdev/02_estimote/iOS-SDK/EstimoteSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -404,7 +430,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iEasyReminder/iEasyReminder-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../EstimoteSDK/Headers,
+				);
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/llv22/Documents/02_apple_programming/05_appleDevs/00_iOSdev/02_estimote/iOS-SDK/EstimoteSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

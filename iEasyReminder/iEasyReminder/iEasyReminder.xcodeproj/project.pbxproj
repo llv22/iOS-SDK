@@ -410,7 +410,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../EstimoteSDK/Headers,
+					../../EstimoteSDK/Headers,
 				);
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -433,7 +433,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../EstimoteSDK/Headers,
+					../../EstimoteSDK/Headers,
 				);
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (

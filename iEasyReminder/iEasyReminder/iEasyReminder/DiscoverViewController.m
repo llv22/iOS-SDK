@@ -9,6 +9,73 @@
 #import "DiscoverViewController.h"
 #import "ESTBeaconManager.h"
 
+@interface ESTBeacon (isEqualToArray)
+
+- (BOOL)isEqual:(id)anObject;
+
+@end
+
+@implementation ESTBeacon (isEqualToArray)
+
+// TODO : logic is incorrect, as ESTBeacon equality should be equal with array
+- (BOOL)isEqual:(id)anObject{
+    if ([anObject isKindOfClass:[ESTBeacon class]]) {
+        ESTBeacon* obj = (ESTBeacon*)anObject;
+        return [self isEqualToBeacon:obj];
+    }
+    return NO;
+}
+
+@end
+
+@interface NSArray (isEqualToBeaconArray)
+
+- (BOOL)isEqualToBeaconArray:(id)anObject;
+
+@end
+
+@implementation NSArray (isEqualToBeaconArray)
+
+// TODO : logic is incorrect, as ESTBeacon equality should be equal with array
+- (BOOL)isEqualToBeaconArray:(id)anObject{
+    if ([anObject isKindOfClass:[NSArray class]]) {
+        NSArray* obj = (NSArray*)anObject;
+        if ([self count] != [obj count]) {
+            return NO;
+        }
+        else{
+            if ([self count] == 0) {
+                return YES;
+            }
+            // TODO : [self count] > 0
+            for (int i= 0; i < [self count]; i++) {
+                if([self[i] isKindOfClass:[ESTBeacon class]] && [obj[i] isKindOfClass:[ESTBeacon class]]){
+                    ESTBeacon *obj1 = (ESTBeacon*)self[i], *obj2 = (ESTBeacon*)obj[i];
+                    if (obj1 != obj2) {
+                        if ([obj1.major longValue] != [obj2.major longValue]) {
+                            return NO;
+                        }
+                        if ([obj1.minor longValue] != [obj2.minor longValue]) {
+                            return NO;
+                        }
+                        if ([obj1.distance floatValue] != [obj2.distance floatValue]) {
+                            return NO;
+                        }
+                    }
+                }
+                else{
+                    return NO;
+                }
+            }
+            return YES;
+        }
+    }
+    return NO;
+}
+
+@end
+
+
 @interface DiscoverViewTableCell : UITableViewCell
 
 @end
@@ -58,32 +125,35 @@
                                                                                           action:@selector(performRefresh:)];
 }
 
-- (void)updateDiscoverTableView {
-    // TODO : Should be replaced with refreshed rotation
-    // http://stackoverflow.com/questions/2965737/replace-uibarbuttonitem-with-uiactivityindicatorview
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, self.navigationItem.rightBarButtonItem.width, self.navigationItem.rightBarButtonItem.width)];
-    UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-    self.navigationItem.rightBarButtonItem = activityItem;
-    [activityIndicator startAnimating];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            if ([self.sortedBeaconsArray count] > 0) {
+- (void)updateDiscoverTableView: (bool)manual {
+    if (manual) {
+        // TODO : Should be replaced with refreshed rotation
+        // http://stackoverflow.com/questions/2965737/replace-uibarbuttonitem-with-uiactivityindicatorview
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, self.navigationItem.rightBarButtonItem.width, self.navigationItem.rightBarButtonItem.width)];
+        UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+        self.navigationItem.rightBarButtonItem = activityItem;
+        [activityIndicator startAnimating];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-            }
-            sleep(2);
+                usleep(60 * 100000);
+            });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [activityIndicator stopAnimating];
+                [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                                                      target:self
+                                                                                                      action:@selector(performRefresh:)];
+            });
         });
-        dispatch_async(dispatch_get_main_queue(), ^{
-//            [activityIndicator stopAnimating];
-            [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                                                  target:self
-                                                                                                  action:@selector(performRefresh:)];
-        });
-    });
+    }
+    else{
+        [self.tableView reloadData];
+    }
 }
 
 - (void) performRefresh: (id)paramSender{
-    [self updateDiscoverTableView];
+    [self updateDiscoverTableView:true];
 }
 
 - (void)didReceiveMemoryWarning
@@ -143,18 +213,43 @@
 
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
-    if (/*![self.beaconsArray isEqualToArray:beacons] && */[self.sortedBeaconsArray count] != [beacons count]) {
-        self.sortedBeaconsArray = beacons;
-        [self updateDiscoverTableView];
-    }
+    NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        ESTBeacon *beacon1 = (ESTBeacon*)obj1, *beacon2 = (ESTBeacon*)obj2;
+        if ([beacon1.major longValue] == [beacon2.major longValue]) {
+            if([beacon1.minor longValue] < [beacon2.minor longValue]){
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+        }
+        else if([beacon1.major longValue] < [beacon2.major longValue]){
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        return (NSComparisonResult)NSOrderedAscending;
+    }];
+    // TODO : as iBeacons implementation, API reuse ESBeacon item, the pointer is the same, so compasion keeps true
+//    if (![sortedArray isEqualToBeaconArray:self.sortedBeaconsArray]) {
+    self.sortedBeaconsArray = sortedArray;
+    [self updateDiscoverTableView:false];
+//    }
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
-    if (/*![self.beaconsArray isEqualToArray:beacons] && */[self.sortedBeaconsArray count] != [beacons count]) {
-        self.sortedBeaconsArray = beacons;
-        [self updateDiscoverTableView];
-    }
+    NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        ESTBeacon *beacon1 = (ESTBeacon*)obj1, *beacon2 = (ESTBeacon*)obj2;
+        if ([beacon1.major longValue] == [beacon2.major longValue]) {
+            if([beacon1.minor longValue] < [beacon2.minor longValue]){
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+        }
+        else if([beacon1.major longValue] < [beacon2.major longValue]){
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        return (NSComparisonResult)NSOrderedAscending;
+    }];
+//    if (![sortedArray isEqualToBeaconArray:self.sortedBeaconsArray]) {
+    self.sortedBeaconsArray = sortedArray;
+    [self updateDiscoverTableView:false];
+//    }
 }
 
 #pragma mark - Table view section source
@@ -180,7 +275,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int iBeaconsCount = 0;
+    NSInteger iBeaconsCount = 0;
     if (self.sortedBeaconsArray != nil) {
         iBeaconsCount = [self.sortedBeaconsArray count];
     }

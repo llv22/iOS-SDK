@@ -62,7 +62,7 @@
 		F142DB9E18F2B21F00B2DE66 /* iEasyReminderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iEasyReminderTests-Info.plist"; sourceTree = "<group>"; };
 		F142DBA018F2B21F00B2DE66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F142DBA218F2B21F00B2DE66 /* iEasyReminderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iEasyReminderTests.m; sourceTree = "<group>"; };
-		F1DDD5FD18F445D9006039A4 /* Readme.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Readme.rtf; sourceTree = "<group>"; };
+		F1BD787218FA4C6100FDA066 /* Readme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Readme.rtfd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 		F142DB6818F2B21F00B2DE66 = {
 			isa = PBXGroup;
 			children = (
-				F1DDD5FD18F445D9006039A4 /* Readme.rtf */,
+				F1BD787218FA4C6100FDA066 /* Readme.rtfd */,
 				F142DB7A18F2B21F00B2DE66 /* iEasyReminder */,
 				F142DB9C18F2B21F00B2DE66 /* iEasyReminderTests */,
 				F142DB7318F2B21F00B2DE66 /* Frameworks */,

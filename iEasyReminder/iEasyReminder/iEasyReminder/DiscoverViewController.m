@@ -30,9 +30,12 @@
 
 @property (nonatomic, strong) ESTBeaconManager *beaconManager;
 @property (nonatomic, strong) ESTBeaconRegion *region;
-@property (strong, nonatomic) NSArray *beaconsArray;
+@property (strong, nonatomic) NSArray *sortedBeaconsArray;
 
 - (void) performRefresh: (id)paramSender;
+- (NSArray*) convertToSortedBeacons:(NSArray*)curbeaconsArray
+                       orginBeacons:(NSArray*)originBeaconsArray
+                          isChanged:(bool*)changed;
 
 @end
 
@@ -64,7 +67,7 @@
     [activityIndicator startAnimating];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_sync(dispatch_get_main_queue(), ^{
-            if ([self.beaconsArray count] > 0) {
+            if ([self.sortedBeaconsArray count] > 0) {
                 [self.tableView reloadData];
             }
             sleep(2);
@@ -128,20 +131,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// TODO : converted into sorted beaconsArray to see if items is changed or not
+// refer to return multi-value http://stackoverflow.com/questions/1692005/returning-multiple-values-from-a-method-in-objective-c
+- (NSArray*) convertToSortedBeacons:(NSArray*)curbeaconsArray
+                       orginBeacons:(NSArray*)originBeaconsArray
+                          isChanged:(bool*)changed{
+    return nil;
+}
+
 #pragma mark - ESTBeaconManager delegate
 
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
-    if (/*![self.beaconsArray isEqualToArray:beacons] && */[self.beaconsArray count] != [beacons count]) {
-        self.beaconsArray = beacons;
+    if (/*![self.beaconsArray isEqualToArray:beacons] && */[self.sortedBeaconsArray count] != [beacons count]) {
+        self.sortedBeaconsArray = beacons;
         [self updateDiscoverTableView];
     }
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
-    if (/*![self.beaconsArray isEqualToArray:beacons] && */[self.beaconsArray count] != [beacons count]) {
-        self.beaconsArray = beacons;
+    if (/*![self.beaconsArray isEqualToArray:beacons] && */[self.sortedBeaconsArray count] != [beacons count]) {
+        self.sortedBeaconsArray = beacons;
         [self updateDiscoverTableView];
     }
 }
@@ -170,8 +181,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int iBeaconsCount = 0;
-    if (self.beaconsArray != nil) {
-        iBeaconsCount = [self.beaconsArray count];
+    if (self.sortedBeaconsArray != nil) {
+        iBeaconsCount = [self.sortedBeaconsArray count];
     }
     return iBeaconsCount;
 }
@@ -183,7 +194,7 @@
     /*
      * Fill the table with beacon data.
      */
-    ESTBeacon *beacon = [self.beaconsArray objectAtIndex:indexPath.row];
+    ESTBeacon *beacon = [self.sortedBeaconsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"Major: %@, Minor: %@", beacon.major, beacon.minor];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Distance: %.2f", [beacon.distance floatValue]];
     cell.imageView.image = [UIImage imageNamed:@"beacon"];
@@ -200,7 +211,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ESTBeacon *selectedBeacon = [self.beaconsArray objectAtIndex:indexPath.row];
+    ESTBeacon *selectedBeacon = [self.sortedBeaconsArray objectAtIndex:indexPath.row];
     
 //    self.completion(selectedBeacon);
 }

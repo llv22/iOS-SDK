@@ -8,6 +8,7 @@
 
 #import "DiscoverViewController.h"
 #import "ESTBeaconManager.h"
+#include <libkern/OSAtomic.h>
 
 @interface ESTBeacon (isEqualToArray)
 
@@ -136,7 +137,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-                usleep(60 * 100000);
+                usleep(45 * 100000);
             });
             dispatch_async(dispatch_get_main_queue(), ^{
                 [activityIndicator stopAnimating];
@@ -153,7 +154,9 @@
 }
 
 - (void) performRefresh: (id)paramSender{
+    OSAtomicCompareAndSwapInt(0, 1, &self->isManualRefreshTriggered);
     [self updateDiscoverTableView:true];
+    OSAtomicCompareAndSwapInt(1, 0, &self->isManualRefreshTriggered);
 }
 
 - (void)didReceiveMemoryWarning
@@ -213,6 +216,8 @@
 
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
+    if (self->isManualRefreshTriggered)
+        return;
     NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         ESTBeacon *beacon1 = (ESTBeacon*)obj1, *beacon2 = (ESTBeacon*)obj2;
         if ([beacon1.major longValue] == [beacon2.major longValue]) {
@@ -234,6 +239,8 @@
 
 - (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
+    if (self->isManualRefreshTriggered)
+        return;
     NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         ESTBeacon *beacon1 = (ESTBeacon*)obj1, *beacon2 = (ESTBeacon*)obj2;
         if ([beacon1.major longValue] == [beacon2.major longValue]) {

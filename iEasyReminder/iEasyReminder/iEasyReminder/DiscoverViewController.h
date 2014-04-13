@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiscoverViewController : UITableViewController
+@interface DiscoverViewController : UITableViewController{
+    volatile int isManualRefreshTriggered;
+}
 
 @end

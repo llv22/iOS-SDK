@@ -415,7 +415,7 @@
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/llv22/Documents/02_apple_programming/05_appleDevs/00_iOSdev/02_estimote/iOS-SDK/EstimoteSDK",
+					../../EstimoteSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -438,7 +438,7 @@
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/llv22/Documents/02_apple_programming/05_appleDevs/00_iOSdev/02_estimote/iOS-SDK/EstimoteSDK",
+					../../EstimoteSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -218,8 +218,7 @@
 {
     if (self->isManualRefreshTriggered)
         return;
-    NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        ESTBeacon *beacon1 = (ESTBeacon*)obj1, *beacon2 = (ESTBeacon*)obj2;
+    NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(ESTBeacon* beacon1, ESTBeacon* beacon2) {
         if ([beacon1.major longValue] == [beacon2.major longValue]) {
             if([beacon1.minor longValue] < [beacon2.minor longValue]){
                 return (NSComparisonResult)NSOrderedDescending;
@@ -241,8 +240,7 @@
 {
     if (self->isManualRefreshTriggered)
         return;
-    NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        ESTBeacon *beacon1 = (ESTBeacon*)obj1, *beacon2 = (ESTBeacon*)obj2;
+    NSArray* sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(ESTBeacon *beacon1, ESTBeacon *beacon2) {
         if ([beacon1.major longValue] == [beacon2.major longValue]) {
             if([beacon1.minor longValue] < [beacon2.minor longValue]){
                 return (NSComparisonResult)NSOrderedDescending;

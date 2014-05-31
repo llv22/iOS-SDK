@@ -261,8 +261,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if(section == 0)
-        return @"iBeacon stations";
+    if(section == 0){
+        return @"available iBeacon stations";
+    }
     
     return nil;
 }
@@ -309,11 +310,11 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ESTBeacon *selectedBeacon = [self.sortedBeaconsArray objectAtIndex:indexPath.row];
-    
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    ESTBeacon *selectedBeacon = [self.sortedBeaconsArray objectAtIndex:indexPath.row];
+//    
 //    self.completion(selectedBeacon);
-}
+//}
 
 @end

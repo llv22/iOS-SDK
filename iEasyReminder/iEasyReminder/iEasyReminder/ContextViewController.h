@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LocateViewController : UIViewController
+@interface ContextViewController : UITableViewController
 
 @end

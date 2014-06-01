@@ -17,7 +17,7 @@
 		F142DB8118F2B21F00B2DE66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DB8018F2B21F00B2DE66 /* main.m */; };
 		F142DB8518F2B21F00B2DE66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DB8418F2B21F00B2DE66 /* AppDelegate.m */; };
 		F142DB8818F2B21F00B2DE66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F142DB8618F2B21F00B2DE66 /* Main.storyboard */; };
-		F142DB8B18F2B21F00B2DE66 /* LocateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DB8A18F2B21F00B2DE66 /* LocateViewController.m */; };
+		F142DB8B18F2B21F00B2DE66 /* ContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DB8A18F2B21F00B2DE66 /* ContextViewController.m */; };
 		F142DB8E18F2B21F00B2DE66 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DB8D18F2B21F00B2DE66 /* DiscoverViewController.m */; };
 		F142DB9018F2B21F00B2DE66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F142DB8F18F2B21F00B2DE66 /* Images.xcassets */; };
 		F142DB9718F2B21F00B2DE66 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142DB9618F2B21F00B2DE66 /* XCTest.framework */; };
@@ -52,8 +52,8 @@
 		F142DB8318F2B21F00B2DE66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F142DB8418F2B21F00B2DE66 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F142DB8718F2B21F00B2DE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F142DB8918F2B21F00B2DE66 /* LocateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocateViewController.h; sourceTree = "<group>"; };
-		F142DB8A18F2B21F00B2DE66 /* LocateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocateViewController.m; sourceTree = "<group>"; };
+		F142DB8918F2B21F00B2DE66 /* ContextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContextViewController.h; sourceTree = "<group>"; };
+		F142DB8A18F2B21F00B2DE66 /* ContextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContextViewController.m; sourceTree = "<group>"; };
 		F142DB8C18F2B21F00B2DE66 /* DiscoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		F142DB8D18F2B21F00B2DE66 /* DiscoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		F142DB8F18F2B21F00B2DE66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 				F142DB8318F2B21F00B2DE66 /* AppDelegate.h */,
 				F142DB8418F2B21F00B2DE66 /* AppDelegate.m */,
 				F142DB8618F2B21F00B2DE66 /* Main.storyboard */,
-				F142DB8918F2B21F00B2DE66 /* LocateViewController.h */,
-				F142DB8A18F2B21F00B2DE66 /* LocateViewController.m */,
+				F142DB8918F2B21F00B2DE66 /* ContextViewController.h */,
+				F142DB8A18F2B21F00B2DE66 /* ContextViewController.m */,
 				F142DB8C18F2B21F00B2DE66 /* DiscoverViewController.h */,
 				F142DB8D18F2B21F00B2DE66 /* DiscoverViewController.m */,
 				F142DB8F18F2B21F00B2DE66 /* Images.xcassets */,
@@ -278,7 +278,7 @@
 			files = (
 				F142DB8E18F2B21F00B2DE66 /* DiscoverViewController.m in Sources */,
 				F142DB8518F2B21F00B2DE66 /* AppDelegate.m in Sources */,
-				F142DB8B18F2B21F00B2DE66 /* LocateViewController.m in Sources */,
+				F142DB8B18F2B21F00B2DE66 /* ContextViewController.m in Sources */,
 				F142DB8118F2B21F00B2DE66 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

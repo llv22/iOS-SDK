@@ -116,37 +116,50 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // TODO : initialize for table
-    self.tableView.sectionHeaderHeight = 20;
+    self.tableView.sectionHeaderHeight = 22;
     [self.tableView registerClass:[DiscoverViewTableCell class] forCellReuseIdentifier:@"DiscoverViewTableCellIdentifier"];
     
-    // TODO : for navigationbar and rightButtonItem event, http://iphonedevsdk.com/forum/iphone-sdk-development/16536-uinavigationitem-title-rightbarbuttonitem-color-color-change.html
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                                          target:self
-                                                                                          action:@selector(performRefresh:)];
+    // TODO : for navigationbar and rightButtonItem event, http://iphonedevsdk.com/forum/iphone-sdk-development/16536-uinavigationitem-title-rightbarbuttonitem-color-color-change.html and also http://blog.csdn.net/justinjing0612/article/details/6965919, http://blog.ericd.net/2013/03/26/pull-to-refresh-uitableview/
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(performRefresh:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+    [self updateDiscoverTableView:true];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+//                                                                                          target:self
+//                                                                                          action:@selector(performRefresh:)];
 }
 
 - (void)updateDiscoverTableView: (bool)manual {
     if (manual) {
         // TODO : Should be replaced with refreshed rotation
         // http://stackoverflow.com/questions/2965737/replace-uibarbuttonitem-with-uiactivityindicatorview
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, self.navigationItem.rightBarButtonItem.width, self.navigationItem.rightBarButtonItem.width)];
-        UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-        self.navigationItem.rightBarButtonItem = activityItem;
-        [activityIndicator startAnimating];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                usleep(45 * 100000);
-            });
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [activityIndicator stopAnimating];
-                [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                                                      target:self
-                                                                                                      action:@selector(performRefresh:)];
-            });
+//        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, self.navigationItem.rightBarButtonItem.width, self.navigationItem.rightBarButtonItem.width)];
+//        UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+//        self.navigationItem.rightBarButtonItem = activityItem;
+//        [activityIndicator startAnimating];
+        [self.refreshControl beginRefreshing];
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Updating..."];
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//                usleep(25 * 100000);
+//            });
+        double delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+//                [activityIndicator stopAnimating];
+            [self.tableView reloadData];
+            if (self->isManualRefreshTriggered) {
+                OSAtomicCompareAndSwapInt(1, 0, &self->isManualRefreshTriggered);
+            }
+            [self.refreshControl endRefreshing];
+            self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+//                [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+//                                                                                                      target:self
+//                                                                                                      action:@selector(performRefresh:)];
         });
+//        });
     }
     else{
         [self.tableView reloadData];
@@ -156,7 +169,6 @@
 - (void) performRefresh: (id)paramSender{
     OSAtomicCompareAndSwapInt(0, 1, &self->isManualRefreshTriggered);
     [self updateDiscoverTableView:true];
-    OSAtomicCompareAndSwapInt(1, 0, &self->isManualRefreshTriggered);
 }
 
 - (void)didReceiveMemoryWarning

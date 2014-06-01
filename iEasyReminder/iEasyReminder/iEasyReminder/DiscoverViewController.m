@@ -116,13 +116,14 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // TODO : initialize for table
-    self.tableView.sectionHeaderHeight = 22;
+//    self.tableView.sectionHeaderHeight = 22;
     [self.tableView registerClass:[DiscoverViewTableCell class] forCellReuseIdentifier:@"DiscoverViewTableCellIdentifier"];
     
     // TODO : for navigationbar and rightButtonItem event, http://iphonedevsdk.com/forum/iphone-sdk-development/16536-uinavigationitem-title-rightbarbuttonitem-color-color-change.html and also http://blog.csdn.net/justinjing0612/article/details/6965919, http://blog.ericd.net/2013/03/26/pull-to-refresh-uitableview/
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.refreshControl addTarget:self action:@selector(performRefresh:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+//    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+//    [self.tableView setContentOffset:CGPointMake(0, -52) animated:NO];
     [self updateDiscoverTableView:true];
 //    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -138,6 +139,8 @@
 //        UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
 //        self.navigationItem.rightBarButtonItem = activityItem;
 //        [activityIndicator startAnimating];
+//        [self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
+//        [self.tableView setContentOffset:CGPointMake(0, -44) animated:NO];
         [self.refreshControl beginRefreshing];
         self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Updating..."];
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -149,11 +152,14 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^{
 //                [activityIndicator stopAnimating];
             [self.tableView reloadData];
+//            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:YES];
+//            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:NO];
             if (self->isManualRefreshTriggered) {
                 OSAtomicCompareAndSwapInt(1, 0, &self->isManualRefreshTriggered);
             }
             [self.refreshControl endRefreshing];
             self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+//            [self.tableView setContentOffset:CGPointMake(0, 0) animated:NO];
 //                [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 //                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
 //                                                                                                      target:self
@@ -163,6 +169,8 @@
     }
     else{
         [self.tableView reloadData];
+//        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:YES];
+//        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:NO];
     }
 }
 

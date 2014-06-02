@@ -12,7 +12,7 @@
 @interface ContextViewController ()
 
 @property(strong, nonatomic) NSDictionary* ctxtGroup;
-@property(assign, nonatomic) int currentExpandedIndex;
+@property(assign, nonatomic) NSUInteger currentExpandedIndex;
 
 - (void)performAddIdot: (id)paramSender;
 
@@ -66,7 +66,7 @@
 }
 
 - (void)retrieveCurrentExpanedSection:(NSMutableArray *)indexPaths {
-    int sectionCount = [self.ctxtGroup[[self.ctxtGroup allKeys][self.currentExpandedIndex]] count];
+    NSUInteger sectionCount = [self.ctxtGroup[[self.ctxtGroup allKeys][self.currentExpandedIndex]] count];
     for (int i=0; i<sectionCount; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:self.currentExpandedIndex];
         [indexPaths addObject:indexPath];
@@ -74,7 +74,7 @@
 }
 
 // TODO : open target group via sectionIndex
-- (void)openGroupContextAtIndex:(int)sectionIndex{
+- (void)openGroupContextAtIndex:(NSUInteger)sectionIndex{
 //    if (self.currentExpandedIndex == sectionIndex) {
 //        return;
 //    }

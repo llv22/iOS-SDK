@@ -14,6 +14,8 @@
 @property(strong, nonatomic) NSDictionary* ctxtGroup;
 @property(assign, nonatomic) int currentExpandedIndex;
 
+- (void)performAddIdot: (id)paramSender;
+
 @end
 
 @interface ContextViewTableCell : UITableViewCell
@@ -49,6 +51,8 @@
                        };
     
     [self.tableView registerClass:[ContextViewTableCell class] forCellReuseIdentifier:@"ContextViewTableCellIdentifier"];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(performAddIdot:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,8 +61,43 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)openGroupContextAtIndex:(int)sectionIndex{
+- (void)performAddIdot: (id)paramSender{
     
+}
+
+- (void)retrieveCurrentExpanedSection:(NSMutableArray *)indexPaths {
+    int sectionCount = [self.ctxtGroup[[self.ctxtGroup allKeys][self.currentExpandedIndex]] count];
+    for (int i=0; i<sectionCount; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:self.currentExpandedIndex];
+        [indexPaths addObject:indexPath];
+    }
+}
+
+// TODO : open target group via sectionIndex
+- (void)openGroupContextAtIndex:(int)sectionIndex{
+//    if (self.currentExpandedIndex == sectionIndex) {
+//        return;
+//    }
+    
+    //TODO : delete currentExpandedIndex items
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    [self retrieveCurrentExpanedSection:indexPaths];
+    //TODO : to avoid UI exception
+    self.currentExpandedIndex = -1;
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+    
+    //TODO : insert the self.currentExpandedIndex <= sectionIndex of section group
+    self.currentExpandedIndex = sectionIndex;
+    [indexPaths removeAllObjects];
+    [self retrieveCurrentExpanedSection:indexPaths];
+    
+    double delayInSeconds = 0.35;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^{
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    });
+    
+    [self.tableView endUpdates];
 }
 
 #pragma mark - Table View
@@ -79,6 +118,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ContextViewTableCellIdentifier" forIndexPath:indexPath];
+    if(cell.accessoryType != UITableViewCellAccessoryDisclosureIndicator){
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     NSString* str = (self.ctxtGroup[[[self.ctxtGroup allKeys]objectAtIndex:indexPath.section]])[indexPath.row];
     cell.textLabel.text = str;
     return cell;

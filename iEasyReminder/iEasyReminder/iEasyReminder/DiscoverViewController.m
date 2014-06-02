@@ -143,10 +143,6 @@
 //        [self.tableView setContentOffset:CGPointMake(0, -44) animated:NO];
         [self.refreshControl beginRefreshing];
         self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Updating..."];
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            dispatch_sync(dispatch_get_main_queue(), ^{
-//                usleep(25 * 100000);
-//            });
         double delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^{

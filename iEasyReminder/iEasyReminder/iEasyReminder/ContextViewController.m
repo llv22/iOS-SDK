@@ -7,6 +7,7 @@
 //
 
 #import "ContextViewController.h"
+#import "IERContextSectionHeader.h"
 
 @interface ContextViewController ()
 
@@ -56,6 +57,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)openGroupContextAtIndex:(int)sectionIndex{
+    
+}
 
 #pragma mark - Table View
 
@@ -87,6 +91,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {	
 	return 40;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
+// TODO : override the default section header
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    IERContextSectionHeader* header = [[[UINib nibWithNibName:@"IERContextSectionHeader" bundle:nil] instantiateWithOwner:self options:nil] objectAtIndex:0];
+    [header.mainButton setTitle:[self.ctxtGroup allKeys][section] forState:UIControlStateNormal];
+    header.buttonTappedHandler = ^{
+        [self openGroupContextAtIndex:section];
+    };
+    return header;
 }
 
 

@@ -25,6 +25,8 @@
 		F142DB9918F2B21F00B2DE66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142DB7818F2B21F00B2DE66 /* UIKit.framework */; };
 		F142DBA118F2B21F00B2DE66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F142DB9F18F2B21F00B2DE66 /* InfoPlist.strings */; };
 		F142DBA318F2B21F00B2DE66 /* iEasyReminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DBA218F2B21F00B2DE66 /* iEasyReminderTests.m */; };
+		F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */; };
+		F1A8D638193C3B8400600081 /* IERContextSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,9 @@
 		F142DB9E18F2B21F00B2DE66 /* iEasyReminderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iEasyReminderTests-Info.plist"; sourceTree = "<group>"; };
 		F142DBA018F2B21F00B2DE66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F142DBA218F2B21F00B2DE66 /* iEasyReminderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iEasyReminderTests.m; sourceTree = "<group>"; };
+		F1A8D634193C3AED00600081 /* IERContextSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IERContextSectionHeader.h; sourceTree = "<group>"; };
+		F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IERContextSectionHeader.m; sourceTree = "<group>"; };
+		F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IERContextSectionHeader.xib; sourceTree = "<group>"; };
 		F1BD787218FA4C6100FDA066 /* Readme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Readme.rtfd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +139,9 @@
 				F142DB8618F2B21F00B2DE66 /* Main.storyboard */,
 				F142DB8918F2B21F00B2DE66 /* ContextViewController.h */,
 				F142DB8A18F2B21F00B2DE66 /* ContextViewController.m */,
+				F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */,
+				F1A8D634193C3AED00600081 /* IERContextSectionHeader.h */,
+				F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */,
 				F142DB8C18F2B21F00B2DE66 /* DiscoverViewController.h */,
 				F142DB8D18F2B21F00B2DE66 /* DiscoverViewController.m */,
 				F142DB8F18F2B21F00B2DE66 /* Images.xcassets */,
@@ -258,6 +266,7 @@
 				F142DB9018F2B21F00B2DE66 /* Images.xcassets in Resources */,
 				F142DB7F18F2B21F00B2DE66 /* InfoPlist.strings in Resources */,
 				F142DB8818F2B21F00B2DE66 /* Main.storyboard in Resources */,
+				F1A8D638193C3B8400600081 /* IERContextSectionHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */,
 				F142DB8E18F2B21F00B2DE66 /* DiscoverViewController.m in Sources */,
 				F142DB8518F2B21F00B2DE66 /* AppDelegate.m in Sources */,
 				F142DB8B18F2B21F00B2DE66 /* ContextViewController.m in Sources */,

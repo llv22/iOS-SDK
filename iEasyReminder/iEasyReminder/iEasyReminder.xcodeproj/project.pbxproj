@@ -28,6 +28,7 @@
 		F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */; };
 		F1A8D638193C3B8400600081 /* IERContextSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */; };
 		FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC0195033B000D9F7BF /* CoreLocation.framework */; };
+		FFC15DC41950473700D9F7BF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC31950473700D9F7BF /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		F1BD787218FA4C6100FDA066 /* Readme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Readme.rtfd; sourceTree = "<group>"; };
 		FFC15DC0195033B000D9F7BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FFC15DC21950369200D9F7BF /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		FFC15DC31950473700D9F7BF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC15DC41950473700D9F7BF /* QuartzCore.framework in Frameworks */,
 				FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */,
 				F12E36C318F6CEA400466D26 /* libEstimoteSDK.a in Frameworks */,
 				F12E36C118F6CE8F00466D26 /* SystemConfiguration.framework in Frameworks */,
@@ -125,6 +128,7 @@
 		F142DB7318F2B21F00B2DE66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFC15DC31950473700D9F7BF /* QuartzCore.framework */,
 				FFC15DC0195033B000D9F7BF /* CoreLocation.framework */,
 				F12E36C218F6CEA400466D26 /* libEstimoteSDK.a */,
 				F12E36C018F6CE8F00466D26 /* SystemConfiguration.framework */,

@@ -13,6 +13,7 @@
 
 @property(strong, nonatomic) NSDictionary* ctxtGroup;
 @property(assign, nonatomic) NSUInteger currentExpandedIndex;
+@property(assign, nonatomic) NSUInteger currentCityColorIndex;
 
 - (void)performAddIdot: (id)paramSender;
 
@@ -39,6 +40,7 @@
 
 -(void) awakeFromNib {
     self.currentExpandedIndex = -1;
+    self.currentCityColorIndex = -1;
     [super awakeFromNib];
 }
 
@@ -104,9 +106,16 @@
                                           }];
                                           //see : switch to current city location, if current expandedIndex hasn't been set
                                           if(self.currentExpandedIndex == -1){
+                                              //TODO : if locality hasn't been colorized
                                               [self openGroupContextAtIndex:iSectionId];
                                           }
-                                          //TODO : if locality hasn't been colorized
+                                          if (self.currentCityColorIndex == -1) {
+                                              self.currentCityColorIndex = iSectionId;
+                                              NSMutableIndexSet *indexPaths = [[NSMutableIndexSet alloc]init];
+                                              [indexPaths addIndex:self.currentCityColorIndex];
+                                              //TODO : still with bugs here
+//                                              [self.tableView reloadSections:indexPaths withRowAnimation:NO];
+                                          }
                                       });
                                   }
         }];
@@ -215,5 +224,13 @@
     return header;
 }
 
+// see : http://stackoverflow.com/questions/2389889/changing-color-of-section-header-in-uitableview
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if (self.currentCityColorIndex != -1) {
+        //        header.mainButton
+        NSLog(@"trigger changes in header view of uitableview");
+    }
+}
 
 @end

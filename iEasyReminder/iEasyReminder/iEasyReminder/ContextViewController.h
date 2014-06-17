@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface ContextViewController : UITableViewController<CLLocationManagerDelegate>{
     CLLocationManager* _cllocationManager;

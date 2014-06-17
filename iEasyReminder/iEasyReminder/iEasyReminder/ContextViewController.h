@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ContextViewController : UITableViewController
+@interface ContextViewController : UITableViewController<CLLocationManagerDelegate>{
+    CLLocationManager* _cllocationManager;
+    CLGeocoder *_geocoder;
+    __weak CLPlacemark* _clplacemark;
+}
 
 @end

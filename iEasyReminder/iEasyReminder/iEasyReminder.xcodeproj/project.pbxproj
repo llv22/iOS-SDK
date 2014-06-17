@@ -27,6 +27,7 @@
 		F142DBA318F2B21F00B2DE66 /* iEasyReminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DBA218F2B21F00B2DE66 /* iEasyReminderTests.m */; };
 		F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */; };
 		F1A8D638193C3B8400600081 /* IERContextSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */; };
+		FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC0195033B000D9F7BF /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IERContextSectionHeader.m; sourceTree = "<group>"; };
 		F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IERContextSectionHeader.xib; sourceTree = "<group>"; };
 		F1BD787218FA4C6100FDA066 /* Readme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Readme.rtfd; sourceTree = "<group>"; };
+		FFC15DC0195033B000D9F7BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FFC15DC21950369200D9F7BF /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */,
 				F12E36C318F6CEA400466D26 /* libEstimoteSDK.a in Frameworks */,
 				F12E36C118F6CE8F00466D26 /* SystemConfiguration.framework in Frameworks */,
 				F12E36BF18F6CE8300466D26 /* AdSupport.framework in Frameworks */,
@@ -100,6 +104,7 @@
 		F142DB6818F2B21F00B2DE66 = {
 			isa = PBXGroup;
 			children = (
+				FFC15DC21950369200D9F7BF /* Location.gpx */,
 				F1BD787218FA4C6100FDA066 /* Readme.rtfd */,
 				F142DB7A18F2B21F00B2DE66 /* iEasyReminder */,
 				F142DB9C18F2B21F00B2DE66 /* iEasyReminderTests */,
@@ -120,6 +125,7 @@
 		F142DB7318F2B21F00B2DE66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFC15DC0195033B000D9F7BF /* CoreLocation.framework */,
 				F12E36C218F6CEA400466D26 /* libEstimoteSDK.a */,
 				F12E36C018F6CE8F00466D26 /* SystemConfiguration.framework */,
 				F12E36BE18F6CE8300466D26 /* AdSupport.framework */,

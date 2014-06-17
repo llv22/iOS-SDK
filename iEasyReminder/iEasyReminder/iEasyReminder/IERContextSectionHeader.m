@@ -14,6 +14,9 @@
     self.layer.borderColor = [UIColor colorWithWhite:0.6 alpha:0.6].CGColor;
     self.layer.borderWidth = 1.0f;
     [super awakeFromNib];
+    [self.mainButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.mainButton.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    [self.mainButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
 }
 
 -(IBAction)buttonTapped:(id)sender {

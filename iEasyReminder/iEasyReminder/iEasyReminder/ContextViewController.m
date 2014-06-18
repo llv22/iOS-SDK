@@ -36,6 +36,46 @@
 
 @end
 
+//see: activity number in progress
+static NSInteger activityCount = 0;
+
+@interface UIApplication (NetworkActivity)
+
+- (void) showNetworkActivityIndicator;
+- (void) hideNetworkActivityIndicator;
+
+@end
+
+//see : in main queue thread by default
+@implementation UIApplication (NetworkActivity)
+
+- (void) showNetworkActivityIndicator{
+    if ([[UIApplication sharedApplication] isStatusBarHidden]) {
+        return;
+    }
+    @synchronized([UIApplication sharedApplication]){
+        if (activityCount == 0) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        }
+        activityCount++;
+    }
+}
+
+- (void) hideNetworkActivityIndicator{
+    if ([[UIApplication sharedApplication] isStatusBarHidden]) {
+        return;
+    }
+    @synchronized([UIApplication sharedApplication]){
+        activityCount--;
+        if (activityCount <= 0) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            activityCount = 0;
+        }
+    }
+}
+
+@end
+
 @implementation ContextViewController
 
 -(void) awakeFromNib {
@@ -49,17 +89,20 @@
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view, typically from a nib.
-    if(self->_cllocationManager == nil){
-        self->_cllocationManager = [[CLLocationManager alloc]init];
-        self->_cllocationManager.delegate = self;
-        self->_cllocationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-        // Set a movement threshold for new events.
-        self->_cllocationManager.distanceFilter = 500; // meters
-        [self->_cllocationManager startUpdatingLocation];
-    }
-    
-    if(self->_geocoder == nil){
-        self->_geocoder = [[CLGeocoder alloc]init];
+    if ([CLLocationManager locationServicesEnabled]) {
+        if(self->_cllocationManager == nil){
+            self->_cllocationManager = [[CLLocationManager alloc]init];
+            self->_cllocationManager.delegate = self;
+            self->_cllocationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+            // Set a movement threshold for new events.
+            self->_cllocationManager.distanceFilter = 500; // meters
+            [self->_cllocationManager startUpdatingLocation];
+            [[UIApplication sharedApplication]showNetworkActivityIndicator];
+        }
+        
+        if(self->_geocoder == nil){
+            self->_geocoder = [[CLGeocoder alloc]init];
+        }
     }
     
     // see : ctxtGroup should be read out and persisted into Core Data model
@@ -95,6 +138,7 @@
                                       //see : __weak for _clplacemark for input parameters
                                       CLPlacemark* _bl_clplacemark = placemarks[0];
                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                          [[UIApplication sharedApplication]hideNetworkActivityIndicator];
                                           __block int iSectionId = 0;
                                           [self.ctxtGroup enumerateKeysAndObjectsUsingBlock:^(NSString* key, id obj, BOOL *stop) {
                                               if([key localizedCaseInsensitiveCompare:_bl_clplacemark.locality] == NSOrderedSame){

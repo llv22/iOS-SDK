@@ -14,7 +14,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
-                        <color key="titleShadowColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                     </state>
                     <connections>
                         <action selector="buttonTapped:" destination="o82-3j-mIp" eventType="touchUpInside" id="c0r-se-eLq"/>

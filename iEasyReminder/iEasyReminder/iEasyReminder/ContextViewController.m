@@ -148,17 +148,19 @@ static NSInteger activityCount = 0;
                                                   iSectionId++;
                                               }
                                           }];
+                                          if (self.currentCityColorIndex == -1) {
+                                              self.currentCityColorIndex = iSectionId;
+                                              //TODO : still with bugs here - http://stackoverflow.com/questions/1547497/change-uitableview-section-header-footer-while-running-the-app
+                                              [self.tableView beginUpdates];
+                                              @synchronized(self.tableView){
+                                                  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:iSectionId] withRowAnimation:NO];
+                                              }
+                                              [self.tableView endUpdates];
+                                          }
                                           //see : switch to current city location, if current expandedIndex hasn't been set
                                           if(self.currentExpandedIndex == -1){
                                               //TODO : if locality hasn't been colorized
                                               [self openGroupContextAtIndex:iSectionId];
-                                          }
-                                          if (self.currentCityColorIndex == -1) {
-                                              self.currentCityColorIndex = iSectionId;
-                                              NSMutableIndexSet *indexPaths = [[NSMutableIndexSet alloc]init];
-                                              [indexPaths addIndex:self.currentCityColorIndex];
-                                              //TODO : still with bugs here
-//                                              [self.tableView reloadSections:indexPaths withRowAnimation:NO];
                                           }
                                       });
                                   }
@@ -208,10 +210,13 @@ static NSInteger activityCount = 0;
     double delayInSeconds = 0.35;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^{
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView beginUpdates];
+        @synchronized(self.tableView){
+            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        }
+        [self.tableView endUpdates];
     });
     
-    [self.tableView endUpdates];
 }
 
 #pragma mark - Table View
@@ -265,16 +270,19 @@ static NSInteger activityCount = 0;
     header.buttonTappedHandler = ^{
         [self openGroupContextAtIndex:section];
     };
+    if (section == self.currentCityColorIndex) {
+        [header updateColorforCurrentLocation];
+    }
     return header;
 }
 
-// see : http://stackoverflow.com/questions/2389889/changing-color-of-section-header-in-uitableview
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
-    if (self.currentCityColorIndex != -1) {
-        //        header.mainButton
-        NSLog(@"trigger changes in header view of uitableview");
-    }
-}
+// see : http://stackoverflow.com/questions/2389889/changing-color-of-section-header-in-uitableview, not working for current city location
+//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+//{
+//    if (self.currentCityColorIndex != -1) {
+//        //        header.mainButton
+//        NSLog(@"trigger changes in header view of uitableview");
+//    }
+//}
 
 @end

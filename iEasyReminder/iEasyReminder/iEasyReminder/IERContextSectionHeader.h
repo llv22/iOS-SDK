@@ -13,4 +13,6 @@
 @property (nonatomic, weak) IBOutlet UIButton *mainButton;
 @property (nonatomic, copy) void (^buttonTappedHandler)();
 
+- (void) updateColorforCurrentLocation;
+
 @end

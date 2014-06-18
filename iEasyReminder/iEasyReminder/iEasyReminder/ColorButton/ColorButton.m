@@ -1,21 +1,25 @@
 //
-//  IERContextSectionHeader.m
+//  ColorButton.m
 //  iEasyReminder
 //
-//  Created by Ding Orlando on 6/2/14.
+//  Created by Ding Orlando on 4/7/14.
 //  Copyright (c) 2014 Ding Orlando. All rights reserved.
 //
 
-#import "IERContextSectionHeader.h"
+#import "ColorButton.h"
+@implementation ColorButton
 
-typedef enum  {
-    topToBottom = 0,
-    leftToRight = 1,
-    upleftTolowRight = 2,
-    uprightTolowLeft = 3,
-}GradientType;
-
-@implementation IERContextSectionHeader
+- (id)initWithFrame:(CGRect)frame FromColorArray:(NSMutableArray*)colorArray ByGradientType:(GradientType)gradientType
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        UIImage *backImage = [self buttonImageFromColors:colorArray ByGradientType:gradientType];
+        [self setBackgroundImage:backImage forState:UIControlStateNormal];
+        self.layer.cornerRadius = 4.0;
+        self.layer.masksToBounds = YES;
+    }
+    return self;
+}
 
 - (UIImage*) buttonImageFromColors:(NSArray*)colors ByGradientType:(GradientType)gradientType{
     NSMutableArray *ar = [NSMutableArray array];
@@ -58,29 +62,5 @@ typedef enum  {
     return image;
 }
 
--(void) awakeFromNib {
-    self.layer.borderColor = [UIColor colorWithWhite:0.6 alpha:0.6].CGColor;
-    self.layer.borderWidth = 0.5f;
-    [super awakeFromNib];
-    
-    [self.mainButton setBackgroundColor:[UIColor lightTextColor]];
-    [self.mainButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    self.mainButton.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-    [self.mainButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-}
-
--(IBAction)buttonTapped:(id)sender {
-    if(self.buttonTappedHandler)
-        self.buttonTappedHandler();
-}
-
-- (void) updateColorforCurrentLocation{
-    NSMutableArray *colorArray = [@[[UIColor lightGrayColor],[UIColor whiteColor]] mutableCopy];
-    UIImage *backImage = [self buttonImageFromColors:colorArray ByGradientType:leftToRight];
-    [self.mainButton setBackgroundImage:backImage forState:UIControlStateNormal];
-    self.mainButton.layer.cornerRadius = 2;
-    self.mainButton.layer.masksToBounds = YES;
-    [self.mainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-}
-
 @end
+

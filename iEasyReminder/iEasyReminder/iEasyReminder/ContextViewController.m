@@ -8,6 +8,7 @@
 
 #import "ContextViewController.h"
 #import "IERContextSectionHeader.h"
+#import "IERLocateStuffViewController.h"
 
 @interface ContextViewController ()
 
@@ -184,7 +185,7 @@ static NSInteger activityCount = 0;
     }
     NSUInteger sectionCount = [self.ctxtGroup[[self.ctxtGroup allKeys][self.currentExpandedIndex]] count];
     for (int i=0; i<sectionCount; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:self.currentExpandedIndex];
+         NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:self.currentExpandedIndex];
         [indexPaths addObject:indexPath];
     }
 }
@@ -284,5 +285,21 @@ static NSInteger activityCount = 0;
 //        NSLog(@"trigger changes in header view of uitableview");
 //    }
 //}
+
+// see : as customized cell in uitableview, have to change to prepareForSegue
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"toLocateStuff" sender:[self.tableView cellForRowAtIndexPath:indexPath]];
+}
+
+// see : segue navigation-out
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"toLocateStuff"]) {
+        IERLocateStuffViewController* locateStuffViewController = segue.destinationViewController;
+        NSIndexPath* indexPathOfSelectedCell = [self.tableView indexPathForCell:sender];
+        [locateStuffViewController setIsInCurrentCity:(indexPathOfSelectedCell.section == self.currentCityColorIndex)];
+        [locateStuffViewController setStrHostedCity:[self.ctxtGroup allKeys][indexPathOfSelectedCell.section]];
+        [locateStuffViewController setStrStuffKey:(self.ctxtGroup[([self.ctxtGroup allKeys][indexPathOfSelectedCell.section])])[indexPathOfSelectedCell.row]];
+    }
+}
 
 @end

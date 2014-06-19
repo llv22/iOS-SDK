@@ -27,6 +27,7 @@
 		F142DBA318F2B21F00B2DE66 /* iEasyReminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DBA218F2B21F00B2DE66 /* iEasyReminderTests.m */; };
 		F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */; };
 		F1A8D638193C3B8400600081 /* IERContextSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */; };
+		FF92CB981952E5DA00BF2BA3 /* IERLocateStuffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */; };
 		FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC0195033B000D9F7BF /* CoreLocation.framework */; };
 		FFC15DC41950473700D9F7BF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC31950473700D9F7BF /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,8 @@
 		F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IERContextSectionHeader.m; sourceTree = "<group>"; };
 		F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IERContextSectionHeader.xib; sourceTree = "<group>"; };
 		F1BD787218FA4C6100FDA066 /* Readme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Readme.rtfd; sourceTree = "<group>"; };
+		FF92CB961952E5DA00BF2BA3 /* IERLocateStuffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IERLocateStuffViewController.h; sourceTree = "<group>"; };
+		FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IERLocateStuffViewController.m; sourceTree = "<group>"; };
 		FFC15DC0195033B000D9F7BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FFC15DC21950369200D9F7BF /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		FFC15DC31950473700D9F7BF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 				F142DB8618F2B21F00B2DE66 /* Main.storyboard */,
 				F142DB8918F2B21F00B2DE66 /* ContextViewController.h */,
 				F142DB8A18F2B21F00B2DE66 /* ContextViewController.m */,
+				FF92CB961952E5DA00BF2BA3 /* IERLocateStuffViewController.h */,
+				FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */,
 				F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */,
 				F1A8D634193C3AED00600081 /* IERContextSectionHeader.h */,
 				F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */,
@@ -295,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF92CB981952E5DA00BF2BA3 /* IERLocateStuffViewController.m in Sources */,
 				F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */,
 				F142DB8E18F2B21F00B2DE66 /* DiscoverViewController.m in Sources */,
 				F142DB8518F2B21F00B2DE66 /* AppDelegate.m in Sources */,

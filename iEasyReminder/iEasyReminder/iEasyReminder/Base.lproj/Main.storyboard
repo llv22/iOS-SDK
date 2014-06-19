@@ -29,6 +29,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="0j0-Za-WxD" kind="push" identifier="toLocateStuff" id="cmQ-bO-wGB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -41,6 +44,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="364" y="-983"/>
+        </scene>
+        <!--Locate Stuff View Controller-->
+        <scene sceneID="TUw-k3-fWE">
+            <objects>
+                <viewController storyboardIdentifier="LocateStuff" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0j0-Za-WxD" customClass="IERLocateStuffViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eGX-eY-2SE"/>
+                        <viewControllerLayoutGuide type="bottom" id="g3c-hR-FqZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RBx-Ws-Wnb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6VP-T6-qTD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g4F-LK-meN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="-983"/>
         </scene>
         <!--Discover View Controller - Discover-->
         <scene sceneID="bEd-l2-VdS">
@@ -69,7 +91,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mny-LV-FK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364" y="-183"/>
+            <point key="canvasLocation" x="369" y="-183"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">

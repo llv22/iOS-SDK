@@ -56,7 +56,25 @@
                     <view key="view" contentMode="scaleToFill" id="RBx-Ws-Wnb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="adv-HO-Bl7">
+                                <rect key="frame" x="141" y="402" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
+                                <rect key="frame" x="0.0" y="66" width="320" height="345"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mQx-My-FDJ" firstAttribute="top" secondItem="RBx-Ws-Wnb" secondAttribute="top" constant="66" id="4vt-vp-uuw"/>
+                            <constraint firstItem="adv-HO-Bl7" firstAttribute="top" secondItem="mQx-My-FDJ" secondAttribute="bottom" constant="-9" id="BVK-AR-1m4"/>
+                            <constraint firstItem="adv-HO-Bl7" firstAttribute="leading" secondItem="RBx-Ws-Wnb" secondAttribute="leading" constant="141" id="qgq-iG-Pfc"/>
+                            <constraint firstItem="mQx-My-FDJ" firstAttribute="leading" secondItem="RBx-Ws-Wnb" secondAttribute="leading" id="wMc-uX-W7T"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6VP-T6-qTD"/>
                 </viewController>

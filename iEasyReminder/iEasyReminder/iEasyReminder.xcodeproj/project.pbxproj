@@ -27,6 +27,7 @@
 		F142DBA318F2B21F00B2DE66 /* iEasyReminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F142DBA218F2B21F00B2DE66 /* iEasyReminderTests.m */; };
 		F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */; };
 		F1A8D638193C3B8400600081 /* IERContextSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */; };
+		F1F636091953101800906D9A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F636081953101800906D9A /* MapKit.framework */; };
 		FF92CB981952E5DA00BF2BA3 /* IERLocateStuffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */; };
 		FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC0195033B000D9F7BF /* CoreLocation.framework */; };
 		FFC15DC41950473700D9F7BF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC31950473700D9F7BF /* QuartzCore.framework */; };
@@ -71,6 +72,7 @@
 		F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IERContextSectionHeader.m; sourceTree = "<group>"; };
 		F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IERContextSectionHeader.xib; sourceTree = "<group>"; };
 		F1BD787218FA4C6100FDA066 /* Readme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Readme.rtfd; sourceTree = "<group>"; };
+		F1F636081953101800906D9A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FF92CB961952E5DA00BF2BA3 /* IERLocateStuffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IERLocateStuffViewController.h; sourceTree = "<group>"; };
 		FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IERLocateStuffViewController.m; sourceTree = "<group>"; };
 		FFC15DC0195033B000D9F7BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -87,6 +89,7 @@
 				FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */,
 				F12E36C318F6CEA400466D26 /* libEstimoteSDK.a in Frameworks */,
 				F12E36C118F6CE8F00466D26 /* SystemConfiguration.framework in Frameworks */,
+				F1F636091953101800906D9A /* MapKit.framework in Frameworks */,
 				F12E36BF18F6CE8300466D26 /* AdSupport.framework in Frameworks */,
 				F142DB7718F2B21F00B2DE66 /* CoreGraphics.framework in Frameworks */,
 				F142DB7918F2B21F00B2DE66 /* UIKit.framework in Frameworks */,
@@ -131,6 +134,7 @@
 		F142DB7318F2B21F00B2DE66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1F636081953101800906D9A /* MapKit.framework */,
 				FFC15DC31950473700D9F7BF /* QuartzCore.framework */,
 				FFC15DC0195033B000D9F7BF /* CoreLocation.framework */,
 				F12E36C218F6CEA400466D26 /* libEstimoteSDK.a */,
@@ -245,6 +249,9 @@
 						DevelopmentTeam = 84Z8KQ6A9Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.iOS = {
 								enabled = 1;
 							};
 						};

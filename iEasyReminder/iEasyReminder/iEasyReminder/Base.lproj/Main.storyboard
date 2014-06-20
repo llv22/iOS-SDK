@@ -57,26 +57,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="adv-HO-Bl7">
-                                <rect key="frame" x="141" y="402" width="39" height="37"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="adv-HO-Bl7">
+                                <rect key="frame" x="141" y="404" width="39" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="6JA-QI-dDQ"/>
+                                    <constraint firstAttribute="width" constant="39" id="8g7-PC-nhE"/>
+                                </constraints>
                                 <color key="pageIndicatorTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
-                                <rect key="frame" x="0.0" y="66" width="320" height="345"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
+                                <rect key="frame" x="0.0" y="65" width="320" height="339"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.38981478973558137" green="0.84715740466404377" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="335" id="B48-jC-77Q"/>
+                                    <constraint firstAttribute="width" constant="320" id="dgk-bR-fBQ"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mQx-My-FDJ" firstAttribute="top" secondItem="RBx-Ws-Wnb" secondAttribute="top" constant="66" id="4vt-vp-uuw"/>
-                            <constraint firstItem="adv-HO-Bl7" firstAttribute="top" secondItem="mQx-My-FDJ" secondAttribute="bottom" constant="-9" id="BVK-AR-1m4"/>
+                            <constraint firstItem="mQx-My-FDJ" firstAttribute="top" secondItem="RBx-Ws-Wnb" secondAttribute="top" constant="65" id="4vt-vp-uuw"/>
+                            <constraint firstAttribute="bottom" secondItem="adv-HO-Bl7" secondAttribute="bottom" constant="50" id="Dro-52-X4s"/>
                             <constraint firstItem="adv-HO-Bl7" firstAttribute="leading" secondItem="RBx-Ws-Wnb" secondAttribute="leading" constant="141" id="qgq-iG-Pfc"/>
                             <constraint firstItem="mQx-My-FDJ" firstAttribute="leading" secondItem="RBx-Ws-Wnb" secondAttribute="leading" id="wMc-uX-W7T"/>
+                            <constraint firstItem="adv-HO-Bl7" firstAttribute="top" secondItem="mQx-My-FDJ" secondAttribute="bottom" id="xL5-ej-j8q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6VP-T6-qTD"/>
+                    <connections>
+                        <outlet property="pageControl" destination="adv-HO-Bl7" id="Jre-zi-omp"/>
+                        <outlet property="scrollView" destination="mQx-My-FDJ" id="OVt-J6-ip1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4F-LK-meN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

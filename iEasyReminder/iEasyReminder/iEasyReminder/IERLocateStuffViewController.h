@@ -14,4 +14,8 @@
 @property (nonatomic, strong) NSString* strHostedCity;
 @property (nonatomic, strong) NSString* strStuffKey;
 
+//see : UIScrollView Control and page control
+@property (nonatomic, strong) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, strong) IBOutlet UIPageControl* pageControl;
+
 @end

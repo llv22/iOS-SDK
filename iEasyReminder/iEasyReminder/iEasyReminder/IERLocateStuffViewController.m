@@ -42,18 +42,17 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    if (!self.isInCurrentCity) {
+    if (self.isInCurrentCity) {
+        //see color for incity case
         self.navigationController.navigationBar.tintColor = [UIColor redColor];
-//        self.navigationItem.backBarButtonItem.tintColor = [UIColor redColor]; //invalid
-    }
-    else{
-        self.navigationController.navigationBar.tintColor = [UIColor purpleColor];
-//        self.navigationItem.backBarButtonItem.tintColor = [UIColor purpleColor]; //invalid
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    if (self.isInCurrentCity) {
+        //see recovery for incity case
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    }
 }
 
 - (void)didReceiveMemoryWarning

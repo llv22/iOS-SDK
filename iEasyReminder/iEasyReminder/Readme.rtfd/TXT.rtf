@@ -76,7 +76,8 @@ see
 
 \f1 \cf0 \
 \
-5, issue - can't change navigation back button title in storyboard, from "Context" the source title to customized value
+5,\
+ issue - can't change navigation back button title in storyboard, from "Context" the source title to customized value
 \f0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
@@ -87,8 +88,9 @@ see
 	1) set height of scrollview >= 325, basic value\
 	2) set vertical height between scrollview and pageview, set basic value\
 don't need the following hard code, such hardcoding should be written in animiation\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f1\fs22 \CocoaLigature0     \cf3 //TODO : adjust scrollview height and width\cf0 \
+\f1\fs22 \cf0 \CocoaLigature0     \cf3 //TODO : adjust scrollview height and width\cf0 \
 \pard\tx529\pardeftab529\pardirnatural
 \cf0     \cf5 NSLog\cf0 (\cf6 @"actuall height of scrollview - %f"\cf0 , \cf7 self\cf0 .\cf8 scrollView\cf0 .\cf9 frame\cf0 .\cf9 size\cf0 .\cf9 height\cf0 );\
     \cf5 NSLog\cf0 (\cf6 @"desired height of scrollview - %f"\cf0 , \cf7 self\cf0 .\cf8 pageControl\cf0 .\cf9 frame\cf0 .\cf9 origin\cf0 .\cf9 y\cf0  - \cf7 self\cf0 .\cf8 scrollView\cf0 .\cf9 frame\cf0 .\cf9 origin\cf0 .\cf9 y\cf0 );
@@ -96,5 +98,47 @@ don't need the following hard code, such hardcoding should be written in animiat
 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 \cf0 {{\NeXTGraphic 1__#$!@%!#__Pasted Graphic.tiff \width28040 \height14920
-}¬}	\
+}¬}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 \
+\
+tintcolor and navigationbarItem title change:\
+\pard\tx529\pardeftab529\pardirnatural
+
+\f1\fs22 \cf0 \CocoaLigature0 \
+1, tintColor\
+\pard\tx529\pardeftab529\pardirnatural
+\cf3 //            self.navigationController.navigationBar.tintColor = [UIColor redColor];\cf0 \
+\cf3 //            [[UIBarButtonItem appearance] setTintColor:[UIColor redColor]];\cf0 \
+\cf3 //            self.navigationController.navigationItem.backBarButtonItem.tintColor = [UIColor redColor];//invalid\cf0 \
+\cf3 //            self.navigationItem.backBarButtonItem.tintColor = [UIColor redColor]; //invalid\
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 \
+2, navigationItem for overwrite\cf3 \
+\cf0         \cf7 BOOL\cf0  isCurrentCity = [[\cf9 NSNumber\cf0  \cf5 numberWithInt\cf0 :(indexPathOfSelectedCell.\cf9 section\cf0  == \cf7 self\cf0 .\cf8 currentCityColorIndex\cf0 )] \cf5 boolValue\cf0 ];\
+        \cf3 // see set backbarButtonItem {\field{\*\fldinst{HYPERLINK "http://blog.163.com/happysky_study/blog/static/17767615020118131433368/"}}{\fldrslt \cf4 http://blog.163.com/happysky_study/blog/static/17767615020118131433368/}}\cf0 \
+        \cf3 // see change tintColor - {\field{\*\fldinst{HYPERLINK "http://stackoverflow.com/questions/6808176/unable-to-change-text-and-text-color-of-navigationitems-back-button"}}{\fldrslt \cf4 http://stackoverflow.com/questions/6808176/unable-to-change-text-and-text-color-of-navigationitems-back-button}}\cf0 \
+        \cf3 // see {\field{\*\fldinst{HYPERLINK "http://blog.sina.com.cn/s/blog_8c87ba3b0101i4oh.html"}}{\fldrslt \cf4 http://blog.sina.com.cn/s/blog_8c87ba3b0101i4oh.html}} and {\field{\*\fldinst{HYPERLINK "http://www.ggkf.com/ios/changing-the-tint-color-of-uibarbuttonitem"}}{\fldrslt \cf4 http://www.ggkf.com/ios/changing-the-tint-color-of-uibarbuttonitem}}\cf0 \
+        \cf7 if\cf0  (isCurrentCity) \{\
+            \cf7 self\cf0 .\cf9 navigationItem\cf0 .\cf9 backBarButtonItem\cf0  = [[\cf9 UIBarButtonItem\cf0  \cf5 alloc\cf0 ]\cf5 initWithTitle\cf0 :strHostedCity\
+                                                                                    \cf5 style\cf0 :\cf5 UIBarButtonItemStyleBordered\cf0 \
+                                                                                   \cf5 target\cf0 :\cf7 nil\cf0 \
+                                                                                   \cf5 action\cf0 :\cf7 nil\cf0 ];\
+\pard\tx529\pardeftab529\pardirnatural
+\cf3 //            self.navigationController.navigationBar.tintColor = [UIColor redColor];\cf0 \
+\cf3 //            [[UIBarButtonItem appearance] setTintColor:[UIColor redColor]];\cf0 \
+\cf3 //            self.navigationController.navigationItem.backBarButtonItem.tintColor = [UIColor redColor];//invalid\cf0 \
+\cf3 //            self.navigationItem.backBarButtonItem.tintColor = [UIColor redColor]; //invalid\cf0 \
+        \}\
+        \cf7 else\cf0 \{\
+            \cf7 self\cf0 .\cf9 navigationItem\cf0 .\cf9 backBarButtonItem\cf0  = [[\cf9 UIBarButtonItem\cf0  \cf5 alloc\cf0 ]\cf5 initWithTitle\cf0 :strHostedCity\
+                                                                                    \cf5 style\cf0 :\cf5 UIBarButtonItemStylePlain\cf0 \
+                                                                                   \cf5 target\cf0 :\cf7 nil\cf0 \
+                                                                                   \cf5 action\cf0 :\cf7 nil\cf0 ];\
+\cf3 //            self.navigationController.navigationBar.tintColor = [UIColor blueColor];\cf0 \
+\cf3 //            [[UIBarButtonItem appearance] setTintColor:[UIColor blueColor]];\cf0 \
+\cf3 //            self.navigationItem.backBarButtonItem.tintColor = [UIColor blueColor]; //invalid\cf0 \
+        \}\cf3 \
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 	\
 }

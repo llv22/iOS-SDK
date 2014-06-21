@@ -277,15 +277,6 @@ static NSInteger activityCount = 0;
     return header;
 }
 
-// see : http://stackoverflow.com/questions/2389889/changing-color-of-section-header-in-uitableview, not working for current city location
-//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-//{
-//    if (self.currentCityColorIndex != -1) {
-//        //        header.mainButton
-//        NSLog(@"trigger changes in header view of uitableview");
-//    }
-//}
-
 // see : as customized cell in uitableview, have to change to prepareForSegue
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self performSegueWithIdentifier:@"toLocateStuff" sender:[self.tableView cellForRowAtIndexPath:indexPath]];
@@ -296,8 +287,32 @@ static NSInteger activityCount = 0;
     if ([segue.identifier isEqualToString:@"toLocateStuff"]) {
         IERLocateStuffViewController* locateStuffViewController = segue.destinationViewController;
         NSIndexPath* indexPathOfSelectedCell = [self.tableView indexPathForCell:sender];
-        [locateStuffViewController setIsInCurrentCity:(indexPathOfSelectedCell.section == self.currentCityColorIndex)];
-        [locateStuffViewController setStrHostedCity:[self.ctxtGroup allKeys][indexPathOfSelectedCell.section]];
+        NSString* strHostedCity = [self.ctxtGroup allKeys][indexPathOfSelectedCell.section];
+        BOOL isCurrentCity = [[NSNumber numberWithInt:(indexPathOfSelectedCell.section == self.currentCityColorIndex)] boolValue];
+        // see set backbarButtonItem http://blog.163.com/happysky_study/blog/static/17767615020118131433368/
+        // see change tintColor - http://stackoverflow.com/questions/6808176/unable-to-change-text-and-text-color-of-navigationitems-back-button
+        // see http://blog.sina.com.cn/s/blog_8c87ba3b0101i4oh.html and http://www.ggkf.com/ios/changing-the-tint-color-of-uibarbuttonitem
+        if (isCurrentCity) {
+            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:strHostedCity
+                                                                                    style:UIBarButtonItemStyleBordered
+                                                                                   target:nil
+                                                                                   action:nil];
+//            self.navigationController.navigationBar.tintColor = [UIColor redColor];
+//            [[UIBarButtonItem appearance] setTintColor:[UIColor redColor]];
+//            self.navigationController.navigationItem.backBarButtonItem.tintColor = [UIColor redColor];//invalid
+//            self.navigationItem.backBarButtonItem.tintColor = [UIColor redColor]; //invalid
+        }
+        else{
+            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:strHostedCity
+                                                                                    style:UIBarButtonItemStylePlain
+                                                                                   target:nil
+                                                                                   action:nil];
+//            self.navigationController.navigationBar.tintColor = [UIColor blueColor];
+//            [[UIBarButtonItem appearance] setTintColor:[UIColor blueColor]];
+//            self.navigationItem.backBarButtonItem.tintColor = [UIColor blueColor]; //invalid
+        }
+        [locateStuffViewController setIsInCurrentCity:isCurrentCity];
+        [locateStuffViewController setStrHostedCity:strHostedCity];
         [locateStuffViewController setStrStuffKey:(self.ctxtGroup[([self.ctxtGroup allKeys][indexPathOfSelectedCell.section])])[indexPathOfSelectedCell.row]];
     }
 }

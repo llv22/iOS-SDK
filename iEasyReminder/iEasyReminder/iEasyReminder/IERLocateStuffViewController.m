@@ -28,12 +28,32 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    self.title = [NSString stringWithFormat:@"%@ in %@", self.strStuffKey, self.strHostedCity];
+    self.title = self.strStuffKey;
+    /** invalid code
     if (!self.isInCurrentCity) {
-        NSLog(@"not in current city - %@", self.strHostedCity);
+        self.navigationItem.backBarButtonItem.tintColor = [UIColor redColor];
     }
+    else{
+        self.navigationItem.backBarButtonItem.tintColor = [UIColor purpleColor];
+    }
+    */
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(performIdentifyStuffLocation:)];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    if (!self.isInCurrentCity) {
+        self.navigationController.navigationBar.tintColor = [UIColor redColor];
+//        self.navigationItem.backBarButtonItem.tintColor = [UIColor redColor]; //invalid
+    }
+    else{
+        self.navigationController.navigationBar.tintColor = [UIColor purpleColor];
+//        self.navigationItem.backBarButtonItem.tintColor = [UIColor purpleColor]; //invalid
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning

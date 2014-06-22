@@ -317,4 +317,16 @@ static NSInteger activityCount = 0;
     }
 }
 
+#pragma mark - UIInterfaceOrientationMaskLandscape
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 @end

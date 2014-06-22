@@ -44,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     if (self.isInCurrentCity) {
         //see color for incity case
-        self.navigationController.navigationBar.tintColor = [UIColor redColor];
+        self.navigationController.navigationBar.tintColor = [UIColor cyanColor];
     }
 }
 
@@ -74,6 +74,18 @@
 
 - (void)performIdentifyStuffLocation: (id)paramSender{
     
+}
+
+#pragma mark - UIInterfaceOrientationMaskLandscape
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end

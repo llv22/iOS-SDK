@@ -333,4 +333,16 @@
 //    self.completion(selectedBeacon);
 //}
 
+#pragma mark - UIInterfaceOrientationMaskLandscape
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortraitUpsideDown;
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 @end

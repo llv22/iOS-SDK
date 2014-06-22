@@ -46,12 +46,20 @@
         //see color for incity case
         self.navigationController.navigationBar.tintColor = [UIColor cyanColor];
     }
+    else{
+        //see disable rightbuttonItem
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     if (self.isInCurrentCity) {
         //see recovery for incity case
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    }
+    else{
+        //see enable rightbuttonItem
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     }
 }
 

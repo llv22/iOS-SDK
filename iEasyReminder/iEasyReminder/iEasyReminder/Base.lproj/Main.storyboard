@@ -67,10 +67,10 @@
                                 <color key="pageIndicatorTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.10000000000000007" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
                                 <rect key="frame" x="0.0" y="65" width="320" height="339"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.38981478973558137" green="0.84715740466404377" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.3898147897" green="0.84715740470000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="335" id="B48-jC-77Q"/>
                                     <constraint firstAttribute="width" constant="320" id="dgk-bR-fBQ"/>
@@ -88,8 +88,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="6VP-T6-qTD"/>
                     <connections>
-                        <outlet property="pageControl" destination="adv-HO-Bl7" id="Jre-zi-omp"/>
-                        <outlet property="scrollView" destination="mQx-My-FDJ" id="OVt-J6-ip1"/>
+                        <outlet property="pageControl" destination="adv-HO-Bl7" id="dLn-61-aWL"/>
+                        <outlet property="scrollView" destination="mQx-My-FDJ" id="J0G-gH-sah"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4F-LK-meN" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,8 +7,16 @@
 //
 
 #import "IERLocateStuffViewController.h"
+#import "MapViewController.h"
+#import "LocatedViewController.h"
 
 @interface IERLocateStuffViewController ()
+
+//see : UIScrollView Control and page control
+@property (nonatomic, strong) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, strong) IBOutlet UIPageControl* pageControl;
+
+@property (nonatomic, strong) NSMutableArray *viewControllers;
 
 @end
 
@@ -39,6 +47,19 @@
     */
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(performIdentifyStuffLocation:)];
+    
+    // view controllers are created pre-created
+    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+    [controllers addObject:[MapViewController new]];
+    [controllers addObject:[LocatedViewController new]];
+    self.viewControllers = controllers;
+    
+    // pages are created on demand
+    // load the visible page
+    // load the page on either side to avoid flashes when the user starts scrolling
+    //
+    [self loadScrollViewWithPage:0];
+    [self loadScrollViewWithPage:1];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -83,6 +104,30 @@
 - (void)performIdentifyStuffLocation: (id)paramSender{
     
 }
+
+- (void)loadScrollViewWithPage:(NSUInteger)page
+{
+    if (page >= self.viewControllers.count)
+        return;
+    
+    // replace the placeholder if necessary
+    UIViewController *controller = [self.viewControllers objectAtIndex:page];
+    [self.viewControllers replaceObjectAtIndex:page withObject:controller];
+    
+    // add the controller's view to the scroll view
+    if (controller.view.superview == nil)
+    {
+        CGRect frame = self.scrollView.frame;
+        frame.origin.x = CGRectGetWidth(frame) * page;
+        frame.origin.y = 0;
+        controller.view.frame = frame;
+        
+        [self addChildViewController:controller];
+        [self.scrollView addSubview:controller.view];
+        [controller didMoveToParentViewController:self];
+    }
+}
+
 
 #pragma mark - UIInterfaceOrientationMaskLandscape
 

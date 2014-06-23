@@ -28,6 +28,8 @@
 		F1A8D636193C3AED00600081 /* IERContextSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */; };
 		F1A8D638193C3B8400600081 /* IERContextSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */; };
 		F1F636091953101800906D9A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F636081953101800906D9A /* MapKit.framework */; };
+		FF1E75631958367100AA3A1A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1E75621958367100AA3A1A /* MapViewController.m */; };
+		FF1E75661958368300AA3A1A /* LocatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1E75651958368300AA3A1A /* LocatedViewController.m */; };
 		FF92CB981952E5DA00BF2BA3 /* IERLocateStuffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */; };
 		FFC15DC1195033B000D9F7BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC0195033B000D9F7BF /* CoreLocation.framework */; };
 		FFC15DC41950473700D9F7BF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFC15DC31950473700D9F7BF /* QuartzCore.framework */; };
@@ -73,6 +75,10 @@
 		F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IERContextSectionHeader.xib; sourceTree = "<group>"; };
 		F1BD787218FA4C6100FDA066 /* Readme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = Readme.rtfd; sourceTree = "<group>"; };
 		F1F636081953101800906D9A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FF1E75611958367100AA3A1A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		FF1E75621958367100AA3A1A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		FF1E75641958368300AA3A1A /* LocatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocatedViewController.h; sourceTree = "<group>"; };
+		FF1E75651958368300AA3A1A /* LocatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocatedViewController.m; sourceTree = "<group>"; };
 		FF92CB961952E5DA00BF2BA3 /* IERLocateStuffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IERLocateStuffViewController.h; sourceTree = "<group>"; };
 		FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IERLocateStuffViewController.m; sourceTree = "<group>"; };
 		FFC15DC0195033B000D9F7BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -158,6 +164,10 @@
 				F142DB8A18F2B21F00B2DE66 /* ContextViewController.m */,
 				FF92CB961952E5DA00BF2BA3 /* IERLocateStuffViewController.h */,
 				FF92CB971952E5DA00BF2BA3 /* IERLocateStuffViewController.m */,
+				FF1E75611958367100AA3A1A /* MapViewController.h */,
+				FF1E75621958367100AA3A1A /* MapViewController.m */,
+				FF1E75641958368300AA3A1A /* LocatedViewController.h */,
+				FF1E75651958368300AA3A1A /* LocatedViewController.m */,
 				F1A8D637193C3B8400600081 /* IERContextSectionHeader.xib */,
 				F1A8D634193C3AED00600081 /* IERContextSectionHeader.h */,
 				F1A8D635193C3AED00600081 /* IERContextSectionHeader.m */,
@@ -312,7 +322,9 @@
 				F142DB8E18F2B21F00B2DE66 /* DiscoverViewController.m in Sources */,
 				F142DB8518F2B21F00B2DE66 /* AppDelegate.m in Sources */,
 				F142DB8B18F2B21F00B2DE66 /* ContextViewController.m in Sources */,
+				FF1E75661958368300AA3A1A /* LocatedViewController.m in Sources */,
 				F142DB8118F2B21F00B2DE66 /* main.m in Sources */,
+				FF1E75631958367100AA3A1A /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

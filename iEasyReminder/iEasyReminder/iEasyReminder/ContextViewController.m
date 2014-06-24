@@ -149,19 +149,21 @@ static NSInteger activityCount = 0;
                                                   iSectionId++;
                                               }
                                           }];
-                                          if (self.currentCityColorIndex == -1) {
-                                              self.currentCityColorIndex = iSectionId;
-                                              //TODO : still with bugs here - http://stackoverflow.com/questions/1547497/change-uitableview-section-header-footer-while-running-the-app
-                                              [self.tableView beginUpdates];
-                                              @synchronized(self.tableView){
-                                                  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:iSectionId] withRowAnimation:NO];
+                                          if (iSectionId < [self.ctxtGroup count]) {
+                                              if (self.currentCityColorIndex == -1) {
+                                                  self.currentCityColorIndex = iSectionId;
+                                                  //TODO : still with bugs here - http://stackoverflow.com/questions/1547497/change-uitableview-section-header-footer-while-running-the-app
+                                                  [self.tableView beginUpdates];
+                                                  @synchronized(self.tableView){
+                                                      [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:iSectionId] withRowAnimation:NO];
+                                                  }
+                                                  [self.tableView endUpdates];
                                               }
-                                              [self.tableView endUpdates];
-                                          }
-                                          //see : switch to current city location, if current expandedIndex hasn't been set
-                                          if(self.currentExpandedIndex == -1){
-                                              //TODO : if locality hasn't been colorized
-                                              [self openGroupContextAtIndex:iSectionId];
+                                              //see : switch to current city location, if current expandedIndex hasn't been set
+                                              if(self.currentExpandedIndex == -1){
+                                                  //TODO : if locality hasn't been colorized
+                                                  [self openGroupContextAtIndex:iSectionId];
+                                              }
                                           }
                                       });
                                   }

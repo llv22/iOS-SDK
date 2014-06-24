@@ -65,7 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     if (self.isInCurrentCity) {
         //see color for incity case
-        self.navigationController.navigationBar.tintColor = [UIColor cyanColor];
+        self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.204 blue:0.919 alpha:1.000];
     }
     else{
         //see disable rightbuttonItem

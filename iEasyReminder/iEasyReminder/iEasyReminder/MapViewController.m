@@ -33,6 +33,7 @@
     frame.origin.x = frame.size.width / 2;
     frame.origin.y = 0;
     item.frame = frame;
+    self.view.backgroundColor = [UIColor colorWithRed:0.543 green:0.396 blue:1.000 alpha:1.000];
     [self.view addSubview:item];
 }
 

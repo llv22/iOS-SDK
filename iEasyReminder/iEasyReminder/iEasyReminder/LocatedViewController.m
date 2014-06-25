@@ -29,6 +29,11 @@
     // Do any additional setup after loading the view.
     UILabel* item= [[UILabel alloc]init];
     item.text = @"LineLocate";
+    CGRect frame = self.view.frame;
+    frame.origin.x = frame.size.width / 2 + frame.size.width;
+    frame.origin.y = 0;
+    item.frame = frame;
+    self.view.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:item];
 }
 

@@ -66,8 +66,11 @@
                                 </constraints>
                                 <color key="pageIndicatorTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="changePage:" destination="0j0-Za-WxD" eventType="valueChanged" id="3f2-yV-npV"/>
+                                </connections>
                             </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.10000000000000007" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.10000000000000007" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
                                 <rect key="frame" x="0.0" y="65" width="320" height="427"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.3898147897" green="0.84715740470000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,6 +78,9 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="335" id="B48-jC-77Q"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="dgk-bR-fBQ"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="0j0-Za-WxD" id="8cZ-RG-pXA"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

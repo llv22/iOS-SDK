@@ -18,6 +18,7 @@ DerivedData
 #local workspace
 Examples/Examples.xcodeproj/project.xcworkspace/xcshareddata/
 PageControl/PageControl.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+PageControl/PageControl.xcodeproj/project.xcworkspace/xcshareddata/
 
 #local homekitService source code - avoid repeated .git
 homekitService/.metadata/

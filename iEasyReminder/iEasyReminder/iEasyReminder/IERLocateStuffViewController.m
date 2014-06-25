@@ -54,6 +54,11 @@
     [controllers addObject:[LocatedViewController new]];
     self.viewControllers = controllers;
     
+    self.scrollView.scrollsToTop = NO;
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * [self.viewControllers count], CGRectGetHeight(self.scrollView.frame));
+    self.pageControl.numberOfPages = [self.viewControllers count];
+    self.pageControl.currentPage = 0;
+    
     // pages are created on demand
     // load the visible page
     // load the page on either side to avoid flashes when the user starts scrolling
@@ -128,6 +133,45 @@
     }
 }
 
+#pragma mark - scrollViewDidEndDecelerating
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"scrollViewDidEndDecelerating");
+    // switch the indicator when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = CGRectGetWidth(self.scrollView.frame);
+    NSUInteger page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
+    
+    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+    [self loadScrollViewWithPage:page - 1];
+    [self loadScrollViewWithPage:page];
+    [self loadScrollViewWithPage:page + 1];
+    
+    // a possible optimization would be to unload the views+controllers which are no longer visible
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    NSLog(@"didRotateFromInterfaceOrientation");
+}
+
+- (void)gotoPage:(BOOL)animated
+{
+    NSInteger page = self.pageControl.currentPage;
+    
+    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+    [self loadScrollViewWithPage:page - 1];
+    [self loadScrollViewWithPage:page];
+    [self loadScrollViewWithPage:page + 1];
+    
+	// update the scroll view to the appropriate page
+    CGRect bounds = self.scrollView.bounds;
+    bounds.origin.x = CGRectGetWidth(bounds) * page;
+    bounds.origin.y = 0;
+    [self.scrollView scrollRectToVisible:bounds animated:animated];
+}
+
+- (IBAction)changePage:(id)sender{
+    [self gotoPage:YES];
+}
 
 #pragma mark - UIInterfaceOrientationMaskLandscape
 

@@ -55,7 +55,10 @@
     self.viewControllers = controllers;
     
     self.scrollView.scrollsToTop = NO;
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * [self.viewControllers count], CGRectGetHeight(self.scrollView.frame));
+    self.scrollView.bounces = NO;
+    // see http://spin.atomicobject.com/2014/03/05/uiscrollview-autolayout-ios/
+    // see http://www.cocoachina.com/bbs/read.php?tid=93385
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * [self.viewControllers count], 0 /*CGRectGetHeight(self.scrollView.frame)*/);
     self.pageControl.numberOfPages = [self.viewControllers count];
     self.pageControl.currentPage = 0;
     

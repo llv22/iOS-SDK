@@ -51,7 +51,9 @@
     // view controllers are created pre-created
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
     [controllers addObject:[LocatedViewController new]];
-    [controllers addObject:[MapViewController new]];
+    if(self.isInCurrentCity){
+        [controllers addObject:[MapViewController new]];
+    }
     self.viewControllers = controllers;
     
     self.scrollView.scrollsToTop = NO;

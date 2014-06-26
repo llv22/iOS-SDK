@@ -50,8 +50,8 @@
     
     // view controllers are created pre-created
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    [controllers addObject:[MapViewController new]];
     [controllers addObject:[LocatedViewController new]];
+    [controllers addObject:[MapViewController new]];
     self.viewControllers = controllers;
     
     self.scrollView.scrollsToTop = NO;
@@ -135,7 +135,6 @@
 
 #pragma mark - scrollViewDidEndDecelerating
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"scrollViewDidEndDecelerating");
     // switch the indicator when more than 50% of the previous/next page is visible
     CGFloat pageWidth = CGRectGetWidth(self.scrollView.frame);
     NSUInteger page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -150,7 +149,6 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    NSLog(@"didRotateFromInterfaceOrientation");
 }
 
 - (void)gotoPage:(BOOL)animated

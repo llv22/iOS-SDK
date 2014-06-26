@@ -70,7 +70,7 @@
                                     <action selector="changePage:" destination="0j0-Za-WxD" eventType="valueChanged" id="3f2-yV-npV"/>
                                 </connections>
                             </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.10000000000000007" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.10000000000000007" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQx-My-FDJ">
                                 <rect key="frame" x="0.0" y="65" width="320" height="427"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.3898147897" green="0.84715740470000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>

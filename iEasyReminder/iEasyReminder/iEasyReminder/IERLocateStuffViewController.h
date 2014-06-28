@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class CLLocation;
+
 @interface IERLocateStuffViewController : UIViewController<UIScrollViewDelegate>
 
 @property (nonatomic, readwrite) BOOL isInCurrentCity;
 @property (nonatomic, strong) NSString* strHostedCity;
 @property (nonatomic, strong) NSString* strStuffKey;
+@property (nonatomic, strong) CLLocation* clocation;
 
 @end

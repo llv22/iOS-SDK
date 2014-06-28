@@ -52,7 +52,7 @@
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
     [controllers addObject:[LocatedViewController new]];
     if(self.isInCurrentCity){
-        [controllers addObject:[MapViewController new]];
+        [controllers addObject: [[MapViewController alloc]initWithClocation: self.clocation]];
     }
     self.viewControllers = controllers;
     

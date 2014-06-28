@@ -7,12 +7,25 @@
 //
 
 #import "MapViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface MapViewController ()
+
+@property(nonatomic, strong) MKMapView* mapview;
+@property(nonatomic, strong) CLLocation* clocation;
 
 @end
 
 @implementation MapViewController
+
+
+-(id) initWithClocation: (CLLocation*)clocation{
+    self = [super init];
+    if (self) {
+        self.clocation = clocation;
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,14 +40,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UILabel* item= [[UILabel alloc]init];
-    item.text = @"LineMap";
-    CGRect frame = self.view.frame;
-    frame.origin.x = frame.size.width / 2;
-    frame.origin.y = 0;
-    item.frame = frame;
-    self.view.backgroundColor = [UIColor colorWithRed:0.543 green:0.396 blue:1.000 alpha:1.000];
-    [self.view addSubview:item];
+    self.mapview = [MKMapView new];
+    self.mapview.frame = self.view.frame;
+    self.mapview.showsUserLocation = YES;
+    self.mapview.tintColor = [UIColor colorWithRed:0.358 green:0.544 blue:0.980 alpha:1.000];
+    [self.mapview setCenterCoordinate:CLLocationCoordinate2DMake(self.clocation.coordinate.latitude, self.clocation.coordinate.longitude) animated:YES];
+    [self.view addSubview:self.mapview];
 }
 
 - (void)didReceiveMemoryWarning

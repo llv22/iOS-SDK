@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CLLocation;
 
 @interface MapViewController : UIViewController
+
+-(id) initWithClocation: (CLLocation*)clocation;
 
 @end

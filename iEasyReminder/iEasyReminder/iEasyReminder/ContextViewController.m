@@ -15,6 +15,7 @@
 @property(strong, nonatomic) NSDictionary* ctxtGroup;
 @property(assign, nonatomic) NSUInteger currentExpandedIndex;
 @property(assign, nonatomic) NSUInteger currentCityColorIndex;
+@property(strong, nonatomic) CLLocation* clocation;
 
 - (void)performAddIdot: (id)paramSender;
 
@@ -131,6 +132,7 @@ static NSInteger activityCount = 0;
         if (self->_clplacemark) {
             return;
         }
+        self.clocation = location;
         [self->_geocoder reverseGeocodeLocation:location
                               completionHandler:^(NSArray *placemarks, NSError *error) {
                                   //see : supposed not so frequent changes
@@ -299,6 +301,7 @@ static NSInteger activityCount = 0;
                                                                                     style:UIBarButtonItemStyleBordered
                                                                                    target:nil
                                                                                    action:nil];
+            [locateStuffViewController setClocation:self.clocation];
 //            self.navigationController.navigationBar.tintColor = [UIColor redColor];
 //            [[UIBarButtonItem appearance] setTintColor:[UIColor redColor]];
 //            self.navigationController.navigationItem.backBarButtonItem.tintColor = [UIColor redColor];//invalid

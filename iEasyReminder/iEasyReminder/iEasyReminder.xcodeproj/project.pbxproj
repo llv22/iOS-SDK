@@ -49,6 +49,7 @@
 		F12E36BE18F6CE8300466D26 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		F12E36C018F6CE8F00466D26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F12E36C218F6CEA400466D26 /* libEstimoteSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEstimoteSDK.a; path = ../../EstimoteSDK/libEstimoteSDK.a; sourceTree = "<group>"; };
+		F133A39A195EC8FB0064207D /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		F142DB7118F2B21F00B2DE66 /* iEasyReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iEasyReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F142DB7418F2B21F00B2DE66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F142DB7618F2B21F00B2DE66 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +141,7 @@
 		F142DB7318F2B21F00B2DE66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F133A39A195EC8FB0064207D /* Reveal.framework */,
 				F1F636081953101800906D9A /* MapKit.framework */,
 				FFC15DC31950473700D9F7BF /* QuartzCore.framework */,
 				FFC15DC0195033B000D9F7BF /* CoreLocation.framework */,
@@ -450,6 +452,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iEasyReminder/iEasyReminder-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -461,6 +467,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					../../EstimoteSDK,
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -473,6 +484,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iEasyReminder/iEasyReminder-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -484,6 +499,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					../../EstimoteSDK,
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

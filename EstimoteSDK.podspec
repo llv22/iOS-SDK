@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "EstimoteSDK"
-  s.version      = "1.3.0"
+  s.version      = "2.0.1"
   s.summary      = "iOS library for Estimote iBeacon devices"
   s.homepage     = "http://estimote.com"
   s.author       = { "Estimote, Inc" => "contact@estimote.com" }
   s.platform     = :ios 
-  s.source       = { :git => "https://github.com/Estimote/iOS-SDK.git", :tag => "{s.version}" }
+  s.source       = { :git => "https://github.com/Estimote/iOS-SDK.git", :tag => "2.0.1" }
   s.source_files =  'EstimoteSDK/Headers/*.h'
   s.preserve_paths = 'EstimoteSDK/libEstimoteSDK.a'
   s.vendored_libraries = 'EstimoteSDK/libEstimoteSDK.a'
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.license      = {
     :type => 'Copyright',
     :text => <<-LICENSE
-      Copyright 2013 Estimote, Inc. All rights reserved.
+      Copyright 2014 Estimote, Inc. All rights reserved.
       LICENSE
   }
 end

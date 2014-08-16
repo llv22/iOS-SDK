@@ -26,6 +26,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -37,11 +39,17 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/accelerometerEnabled">&nbsp;&nbsp;&nbsp;&nbsp;accelerometerEnabled</option>
+	
 	<option value="//api/name/advInterval">&nbsp;&nbsp;&nbsp;&nbsp;advInterval</option>
 	
 	<option value="//api/name/batteryLevel">&nbsp;&nbsp;&nbsp;&nbsp;batteryLevel</option>
 	
+	<option value="//api/name/batteryType">&nbsp;&nbsp;&nbsp;&nbsp;batteryType</option>
+	
 	<option value="//api/name/color">&nbsp;&nbsp;&nbsp;&nbsp;color</option>
+	
+	<option value="//api/name/connectionStatus">&nbsp;&nbsp;&nbsp;&nbsp;connectionStatus</option>
 	
 	<option value="//api/name/distance">&nbsp;&nbsp;&nbsp;&nbsp;distance</option>
 	
@@ -51,7 +59,9 @@
 	
 	<option value="//api/name/hardwareVersion">&nbsp;&nbsp;&nbsp;&nbsp;hardwareVersion</option>
 	
-	<option value="//api/name/isConnected">&nbsp;&nbsp;&nbsp;&nbsp;isConnected</option>
+	<option value="//api/name/isAccelerometerAvailable">&nbsp;&nbsp;&nbsp;&nbsp;isAccelerometerAvailable</option>
+	
+	<option value="//api/name/isAccelerometerEditAvailable">&nbsp;&nbsp;&nbsp;&nbsp;isAccelerometerEditAvailable</option>
 	
 	<option value="//api/name/isMoving">&nbsp;&nbsp;&nbsp;&nbsp;isMoving</option>
 	
@@ -94,6 +104,8 @@
 	
 	<option value="//api/name/disconnect">&nbsp;&nbsp;&nbsp;&nbsp;- disconnect</option>
 	
+	<option value="//api/name/enableAccelerometer:completion:">&nbsp;&nbsp;&nbsp;&nbsp;- enableAccelerometer:completion:</option>
+	
 	<option value="//api/name/isEqualToBeacon:">&nbsp;&nbsp;&nbsp;&nbsp;- isEqualToBeacon:</option>
 	
 	<option value="//api/name/readAccelerometerCountWithCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- readAccelerometerCountWithCompletion:</option>
@@ -129,6 +141,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -140,6 +154,18 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Cloud related properties">Cloud related properties</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Sensor related properties">Sensor related properties</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Connection handling methods">Connection handling methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Methods for sensors readings">Methods for sensors readings</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Methods for writing beacon configuration">Methods for writing beacon configuration</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Methods for firmware update">Methods for firmware update</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_utility methods">utility methods</a></span></li>
+	
 </ul></li>
 
 
@@ -148,11 +174,17 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/accelerometerEnabled">accelerometerEnabled</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/advInterval">advInterval</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/batteryLevel">batteryLevel</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/batteryType">batteryType</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/color">color</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connectionStatus">connectionStatus</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/distance">distance</a></span></li>
 	
@@ -162,7 +194,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hardwareVersion">hardwareVersion</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isConnected">isConnected</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAccelerometerAvailable">isAccelerometerAvailable</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAccelerometerEditAvailable">isAccelerometerEditAvailable</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isMoving">isMoving</a></span></li>
 	
@@ -205,6 +239,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connect">connect</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disconnect">disconnect</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/enableAccelerometer:completion:">enableAccelerometer:completion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEqualToBeacon:">isEqualToBeacon:</a></span></li>
 	
@@ -265,6 +301,14 @@
 					
                     
                     
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The ESTBeacon class defines the interface for handling and configuring single estimote beacon. Instance of this class represents beacon with its current parametrs. In addition it allows to <a href="#//api/name/connect">connect</a> and modify settings like ProximityUUID, Major, Minor or Power. You should not build instance of this object by your own - it is generated using <a href="../Classes/ESTBeaconManager.html">ESTBeaconManager</a> class object.</p>
+					</div>
+					
+					
 					
 					
 					
@@ -347,7 +391,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/isConnected">&nbsp;&nbsp;isConnected</a></code>
+		<code><a href="#//api/name/connectionStatus">&nbsp;&nbsp;connectionStatus</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -372,6 +416,12 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/remainingLifetime">&nbsp;&nbsp;remainingLifetime</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/batteryType">&nbsp;&nbsp;batteryType</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -419,7 +469,41 @@
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li>
+						</ul>
+						
+						
+						<a title="Sensor related properties" name="task_Sensor related properties"></a>
+						<h3 class="subsubtitle task-title">Sensor related properties</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAccelerometerAvailable">&nbsp;&nbsp;isAccelerometerAvailable</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAccelerometerEditAvailable">&nbsp;&nbsp;isAccelerometerEditAvailable</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/accelerometerEnabled">&nbsp;&nbsp;accelerometerEnabled</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Connection handling methods" name="task_Connection handling methods"></a>
+						<h3 class="subsubtitle task-title">Connection handling methods</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/connect">&ndash;&nbsp;connect</a></code>
 	</span>
@@ -431,7 +515,15 @@
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Methods for sensors readings" name="task_Methods for sensors readings"></a>
+						<h3 class="subsubtitle task-title">Methods for sensors readings</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/readTemperatureWithCompletion:">&ndash;&nbsp;readTemperatureWithCompletion:</a></code>
 	</span>
@@ -455,7 +547,15 @@
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Methods for writing beacon configuration" name="task_Methods for writing beacon configuration"></a>
+						<h3 class="subsubtitle task-title">Methods for writing beacon configuration</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/writeName:completion:">&ndash;&nbsp;writeName:completion:</a></code>
 	</span>
@@ -505,6 +605,20 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/enableAccelerometer:completion:">&ndash;&nbsp;enableAccelerometer:completion:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Methods for firmware update" name="task_Methods for firmware update"></a>
+						<h3 class="subsubtitle task-title">Methods for firmware update</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
 		<code><a href="#//api/name/checkFirmwareUpdateWithCompletion:">&ndash;&nbsp;checkFirmwareUpdateWithCompletion:</a></code>
 	</span>
 	
@@ -515,7 +629,15 @@
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="utility methods" name="task_utility methods"></a>
+						<h3 class="subsubtitle task-title">utility methods</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isEqualToBeacon:">&ndash;&nbsp;isEqualToBeacon:</a></code>
 	</span>
@@ -533,6 +655,61 @@
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/accelerometerEnabled" title="accelerometerEnabled"></a>
+	<h3 class="subsubtitle method-title">accelerometerEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>accelerometerEnabled</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) BOOL accelerometerEnabled</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>Estimote OS A2.1</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates is accelerometer enabled.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p>-(void)<a href="#//api/name/enableAccelerometer:completion:">- enableAccelerometer:completion:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ESTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/advInterval" title="advInterval"></a>
@@ -617,6 +794,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/batteryType" title="batteryType"></a>
+	<h3 class="subsubtitle method-title">batteryType</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>batteryType</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) ESTBeaconBatteryType batteryType</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Beacon battery model</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ESTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/color" title="color"></a>
 	<h3 class="subsubtitle method-title">color</h3>
 	
@@ -641,6 +859,47 @@
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Color of the beacon. Filled with value after successful cloud request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ESTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/connectionStatus" title="connectionStatus"></a>
+	<h3 class="subsubtitle method-title">connectionStatus</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>connectionStatus</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) ESTBeaconConnectionStatus connectionStatus</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Property indicating connection status.</p>
 	</div>
 	
 	
@@ -822,35 +1081,95 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/isConnected" title="isConnected"></a>
-	<h3 class="subsubtitle method-title">isConnected</h3>
+	<a name="//api/name/isAccelerometerAvailable" title="isAccelerometerAvailable"></a>
+	<h3 class="subsubtitle method-title">isAccelerometerAvailable</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="#//api/name/firmwareUpdateInfo">firmwareUpdateInfo</a></p>
+		<p>isAccelerometerAvailable</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) BOOL isConnected</code></div>
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) BOOL isAccelerometerAvailable</code></div>
 
     
 	
 	
 	
 	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>Estimote OS A2.0</p>
+	</div>
 	
 	
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Flag indicating connection status.</p>
+		<p>Indicates if accelerometer available.</p>
 	</div>
 	
 	
 	
 	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ESTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isAccelerometerEditAvailable" title="isAccelerometerEditAvailable"></a>
+	<h3 class="subsubtitle method-title">isAccelerometerEditAvailable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>isAccelerometerEditAvailable</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic) BOOL isAccelerometerEditAvailable</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>Estimote OS A2.1</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates if accelerometer state change is available.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p>-(void)<a href="#//api/name/enableAccelerometer:completion:">- enableAccelerometer:completion:</a></p></code></li>
+			
+		</ul>
+	</div>
 	
 	
 	
@@ -1478,7 +1797,7 @@ is required to pass this process.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)checkFirmwareUpdateWithCompletion:(ESTBoolCompletionBlock)<em>completion</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)checkFirmwareUpdateWithCompletion:(ESTFirmwareInfoCompletionBlock)<em>completion</em></code></div>
 
     
 	
@@ -1590,6 +1909,71 @@ Major, Minor, Power and Advertising interval.</p>
 	
 	
 	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ESTBeacon.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/enableAccelerometer:completion:" title="enableAccelerometer:completion:"></a>
+	<h3 class="subsubtitle method-title">enableAccelerometer:completion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Turn on / off accelerometer in beacon.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)enableAccelerometer:(BOOL)<em>enable</em> completion:(ESTBoolCompletionBlock)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>block handling operation completion</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>void</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>Estimote OS A2.1</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/isAccelerometerAvailable">@property isAccelerometerAvailable</a>, <a href="#//api/name/isAccelerometerEditAvailable">@property isAccelerometerEditAvailable</a></p></code></li>
+			
+		</ul>
+	</div>
 	
 	
 	
@@ -2313,7 +2697,7 @@ It is broadcasted by the beacons when it is in motion.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Estimote. All rights reserved. (Last updated: 2014-04-01)</span><br />
+						<p><span class="copyright">&copy; 2014 Estimote. All rights reserved. (Last updated: 2014-06-06)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

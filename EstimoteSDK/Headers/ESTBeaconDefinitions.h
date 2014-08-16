@@ -2,7 +2,7 @@
 //  ESTBeaconDefinitions.h
 //  EstimoteSDK
 //
-//  Version : 1.1.0
+//  Version : 2.0.0
 //  Created by Marcin Klimek on 9/26/13.
 //  Copyright (c) 2013 Estimote. All rights reserved.
 //
@@ -20,7 +20,7 @@
 // Type and class definitions
 
 
-typedef enum : char
+typedef NS_ENUM(char, ESTBeaconPower)
 {
     ESTBeaconPowerLevel1 = -30,
     ESTBeaconPowerLevel2 = -20,
@@ -30,53 +30,58 @@ typedef enum : char
     ESTBeaconPowerLevel6 = -4,
     ESTBeaconPowerLevel7 = 0,
     ESTBeaconPowerLevel8 = 4
-} ESTBeaconPower;
-
-
-typedef NS_ENUM(NSInteger, ESTTrackType)
-{
-    ESTTrackTypeEnterRegion,
-    ESTTrackTypeExitRegion,
-    ESTTrackTypeInFar,
-    ESTTrackTypeInNear,
-    ESTTrackTypeInImmediate
 };
 
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconBatteryType)
+{
+    ESTBeaconBatteryTypeUnknown = 0,
+    ESTBeaconBatteryTypeCR2450,
+    ESTBeaconBatteryTypeCR2477
+};
+
+
+typedef NS_ENUM(int, ESTBeaconFirmwareState)
 {
     ESTBeaconFirmwareStateBoot,
     ESTBeaconFirmwareStateApp
-} ESTBeaconFirmwareState;
+};
 
-typedef enum : int
+typedef NS_ENUM(int, ESTEvent)
 {
     ESTEventEnterRegion,
     ESTEventExitRegion
-} ESTEvent;
+};
 
-typedef enum : int
+typedef NS_ENUM(int, ESTProximity)
 {
     ESTProximityImmediate,
-	ESTProximityNear,
-	ESTProximityFar
-} ESTProximity;
+    ESTProximityNear,
+    ESTProximityFar
+};
 
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconColor)
 {
+    ESTBeaconColorUnknown = 0,
     ESTBeaconColorMint = 1,
     ESTBeaconColorIce,
     ESTBeaconColorBlueberry,
     ESTBeaconColorWhite,
     ESTBeaconColorTransparent
-} ESTBeaconColor;
+};
 
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconFirmwareUpdate)
 {
     ESTBeaconFirmwareUpdateNone,
     ESTBeaconFirmwareUpdateAvailable,
     ESTBeaconFirmwareUpdateNotAvailable
-} ESTBeaconFirmwareUpdate;
+};
 
+typedef NS_ENUM(int, ESTBeaconConnectionStatus)
+{
+    ESTBeaconConnectionStatusConnecting,
+    ESTBeaconConnectionStatusConnected,
+    ESTBeaconConnectionStatusDisconnected
+};
 
 typedef void(^ESTCompletionBlock)(NSError* error);
 typedef void(^ESTObjectCompletionBlock)(id result, NSError* error);
@@ -89,7 +94,7 @@ typedef void(^ESTStringCompletionBlock)(NSString* value, NSError* error);
 typedef void(^ESTProgressBlock)(NSInteger value, NSString* description, NSError* error);
 typedef void(^ESTArrayCompletionBlock)(NSArray* value, NSError* error);
 typedef void(^ESTFirmwareInfoCompletionBlock)(ESTBeaconFirmwareInfoVO *result, NSError* error);
-
+typedef void(^ESTCsRegisterCompletonBlock)(NSError* error);
 
 ////////////////////////////////////////////////////////////////////
 // Interface definition

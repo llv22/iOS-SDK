@@ -10,6 +10,10 @@
 		951C167918E45EA5001B3C8E /* ESTTemperatureDemoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951C167818E45EA5001B3C8E /* ESTTemperatureDemoVC.xib */; };
 		951C167B18E45EB3001B3C8E /* ESTAccelerometerDemoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951C167A18E45EB3001B3C8E /* ESTAccelerometerDemoVC.xib */; };
 		951C167D18E475B6001B3C8E /* ESTNotificationDemoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951C167C18E475B6001B3C8E /* ESTNotificationDemoVC.xib */; };
+		9555FA1A19420B39008603F8 /* ESTCloudAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9555FA1819420B39008603F8 /* ESTCloudAuthVC.m */; };
+		9555FA1B19420B39008603F8 /* ESTCloudAuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9555FA1919420B39008603F8 /* ESTCloudAuthVC.xib */; };
+		95A43D771940CDDB004D81E3 /* ESTCloudBeaconTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A43D761940CDDB004D81E3 /* ESTCloudBeaconTableVC.m */; };
+		95C7C3501941BAA300D9BF17 /* ESTCloudBeaconTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C7C34F1941BAA300D9BF17 /* ESTCloudBeaconTableVC.xib */; };
 		A12D28DB18E9638100872A95 /* ESTUpdateFirmwareDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A12D28D918E9638100872A95 /* ESTUpdateFirmwareDemoVC.m */; };
 		A12D28DC18E9638100872A95 /* ESTUpdateFirmwareDemoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12D28DA18E9638100872A95 /* ESTUpdateFirmwareDemoVC.xib */; };
 		A154DE5418E0373100734BD6 /* ESTTemperatureDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A154DE5318E0373100734BD6 /* ESTTemperatureDemoVC.m */; };
@@ -47,6 +51,12 @@
 		951C167818E45EA5001B3C8E /* ESTTemperatureDemoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTTemperatureDemoVC.xib; sourceTree = "<group>"; };
 		951C167A18E45EB3001B3C8E /* ESTAccelerometerDemoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTAccelerometerDemoVC.xib; sourceTree = "<group>"; };
 		951C167C18E475B6001B3C8E /* ESTNotificationDemoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTNotificationDemoVC.xib; sourceTree = "<group>"; };
+		9555FA1719420B39008603F8 /* ESTCloudAuthVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTCloudAuthVC.h; sourceTree = "<group>"; };
+		9555FA1819420B39008603F8 /* ESTCloudAuthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTCloudAuthVC.m; sourceTree = "<group>"; };
+		9555FA1919420B39008603F8 /* ESTCloudAuthVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTCloudAuthVC.xib; sourceTree = "<group>"; };
+		95A43D751940CDDB004D81E3 /* ESTCloudBeaconTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTCloudBeaconTableVC.h; sourceTree = "<group>"; };
+		95A43D761940CDDB004D81E3 /* ESTCloudBeaconTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTCloudBeaconTableVC.m; sourceTree = "<group>"; };
+		95C7C34F1941BAA300D9BF17 /* ESTCloudBeaconTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTCloudBeaconTableVC.xib; sourceTree = "<group>"; };
 		A12D28D818E9638100872A95 /* ESTUpdateFirmwareDemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESTUpdateFirmwareDemoVC.h; sourceTree = "<group>"; };
 		A12D28D918E9638100872A95 /* ESTUpdateFirmwareDemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESTUpdateFirmwareDemoVC.m; sourceTree = "<group>"; };
 		A12D28DA18E9638100872A95 /* ESTUpdateFirmwareDemoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTUpdateFirmwareDemoVC.xib; sourceTree = "<group>"; };
@@ -147,8 +157,14 @@
 				AC39C3CD18D72A6F00B38212 /* ESTAppDelegate.m */,
 				AC39C3D218D72A6F00B38212 /* ESTViewController.h */,
 				AC39C3D318D72A6F00B38212 /* ESTViewController.m */,
+				9555FA1719420B39008603F8 /* ESTCloudAuthVC.h */,
+				9555FA1819420B39008603F8 /* ESTCloudAuthVC.m */,
+				9555FA1919420B39008603F8 /* ESTCloudAuthVC.xib */,
 				AC39C3F218D72BA700B38212 /* ESTBeaconTableVC.h */,
 				AC39C3F318D72BA700B38212 /* ESTBeaconTableVC.m */,
+				95A43D751940CDDB004D81E3 /* ESTCloudBeaconTableVC.h */,
+				95A43D761940CDDB004D81E3 /* ESTCloudBeaconTableVC.m */,
+				95C7C34F1941BAA300D9BF17 /* ESTCloudBeaconTableVC.xib */,
 				AC39C3F918D7346C00B38212 /* ESTProximityDemoVC.h */,
 				AC39C3FA18D7346C00B38212 /* ESTProximityDemoVC.m */,
 				AC39C3FC18D73DCB00B38212 /* ESTDistanceDemoVC.h */,
@@ -267,6 +283,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				951C167B18E45EB3001B3C8E /* ESTAccelerometerDemoVC.xib in Resources */,
+				9555FA1B19420B39008603F8 /* ESTCloudAuthVC.xib in Resources */,
+				95C7C3501941BAA300D9BF17 /* ESTCloudBeaconTableVC.xib in Resources */,
 				951C167D18E475B6001B3C8E /* ESTNotificationDemoVC.xib in Resources */,
 				A12D28DC18E9638100872A95 /* ESTUpdateFirmwareDemoVC.xib in Resources */,
 				AC39C3D618D72A6F00B38212 /* Images.xcassets in Resources */,
@@ -293,10 +311,12 @@
 				A154DE5418E0373100734BD6 /* ESTTemperatureDemoVC.m in Sources */,
 				AC39C3D418D72A6F00B38212 /* ESTViewController.m in Sources */,
 				AC39C3FB18D7346C00B38212 /* ESTProximityDemoVC.m in Sources */,
+				95A43D771940CDDB004D81E3 /* ESTCloudBeaconTableVC.m in Sources */,
 				AC39C3FE18D73DCB00B38212 /* ESTDistanceDemoVC.m in Sources */,
 				AC39C3F418D72BA700B38212 /* ESTBeaconTableVC.m in Sources */,
 				AC39C40118D8564100B38212 /* ESTNotificationDemoVC.m in Sources */,
 				A154DE5918E03CD500734BD6 /* ESTAccelerometerDemoVC.m in Sources */,
+				9555FA1A19420B39008603F8 /* ESTCloudAuthVC.m in Sources */,
 				A12D28DB18E9638100872A95 /* ESTUpdateFirmwareDemoVC.m in Sources */,
 				AC39C3CE18D72A6F00B38212 /* ESTAppDelegate.m in Sources */,
 			);

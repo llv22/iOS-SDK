@@ -2,7 +2,7 @@
 //  ESTBeaconManager.h
 //  EstimoteSDK
 //
-//  Version: 2.0beta
+//  Version: 2.0.0
 //  Created by Marcin Klimek on 9/18/13.
 //  Copyright (c) 2013 Estimote. All rights reserved.
 //
@@ -185,6 +185,11 @@ monitoringDidFailForRegion:(ESTBeaconRegion *)region
  */
 @property (nonatomic) BOOL avoidUnknownStateBeacons;
 
+/**
+ When ranging more then one region, beaconManager:didRangeBeacons:inRegion: always returns list of beacons for all ranged regions.
+ */
+@property (nonatomic) BOOL returnAllRangedBeaconsAtOnce;
+
 
 /// @name CoreLocation based iBeacon monitoring and ranging methods
 #pragma mark - CoreLocation based iBeacon monitoring and ranging methods
@@ -200,6 +205,8 @@ monitoringDidFailForRegion:(ESTBeaconRegion *)region
  * @return void
  */
 -(void)startRangingBeaconsInRegion:(ESTBeaconRegion*)region;
+
+
 
 /**
  * Start monitoring for particular region.
@@ -222,6 +229,14 @@ monitoringDidFailForRegion:(ESTBeaconRegion *)region
  * @return void
  */
 -(void)stopRangingBeaconsInRegion:(ESTBeaconRegion*)region;
+
+/**
+ * Stops ranging Estimote beacons in all ranged regions.
+ *
+ *
+ * @return void
+ */
+-(void)stopRangingBeaconsInAllRegions;
 
 /**
  * Unsubscribe application from iOS monitoring of
@@ -295,6 +310,26 @@ monitoringDidFailForRegion:(ESTBeaconRegion *)region
  */
 +(NSArray *)recentlyUsedUUIDs;
 
+
+/// @name Estimote Cloud based methods
+#pragma mark - Estimote Cloud based methods
+
+/**
+ * Setup App ID and App token that allows to access beacons information stored in Estimote Cloud.
+ *
+ * @return void
+ */
++(void)setupAppID:(NSString*)appID andAppToken:(NSString*)appToken;
+
+/**
+ * Fetch beacons that are assign to your account.
+ * Method works only after successful authentication.
+ *
+ * @param completion block handling operation completion
+ *
+ * @return void
+ */
+-(void)fetchEstimoteBeaconsWithCompletion:(ESTArrayCompletionBlock)completion;
 
 @end
 

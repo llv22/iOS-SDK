@@ -65,7 +65,7 @@
 
 - (void)vibrateEffect
 {
-    if (self.beacon.isMoving && self.beacon.isConnected)
+    if (self.beacon.isMoving && self.beacon.connectionStatus == ESTBeaconConnectionStatusConnected)
     {
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         
@@ -113,6 +113,14 @@
     
     self.activityLabel.text = @"Connection failed";
     self.activityLabel.textColor = [UIColor redColor];
+    
+    UIAlertView* errorView = [[UIAlertView alloc] initWithTitle:@"Connection error"
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [errorView show];
 }
 
 - (void)beacon:(ESTBeacon *)beacon accelerometerStateChanged:(BOOL)state

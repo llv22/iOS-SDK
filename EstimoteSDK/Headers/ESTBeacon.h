@@ -2,7 +2,7 @@
 //  ESTBeacon.h
 //  EstimoteSDK
 //
-//  Version: 2.0beta
+//  Version: 2.0.0
 //  Created by Marcin Klimek on 06/03/14.
 //  Copyright (c) 2014 Estimote. All rights reserved.
 
@@ -12,7 +12,19 @@
 #import "ESTBeaconDefinitions.h"
 
 
+#define CONNECTION_ERROR_UID_MISSING    400
+#define CONNECTION_ERROR_AUTHORIZATION  401
+#define CONNECTION_ERROR_TIMEOUT        402
+
+#define CHARACTERISTIC_ERROR            410
+#define SAME_VALUE_ERROR                411
+
 @class ESTBeacon;
+
+/**
+ 
+ The ESTBeaconDelegate protocol defines the delegate methods to respond for related events.
+ */
 
 @protocol ESTBeaconDelegate <NSObject>
 
@@ -58,6 +70,12 @@
 - (void)beacon:(ESTBeacon*)beacon accelerometerStateChanged:(BOOL)state;
 
 @end
+
+/**
+ 
+ The ESTBeacon class defines the interface for handling and configuring single estimote beacon. Instance of this class represents beacon with its current parametrs. In addition it allows to connect and modify settings like ProximityUUID, Major, Minor or Power. You should not build instance of this object by your own - it is generated using ESTBeaconManager class object.
+ 
+ */
 
 @interface ESTBeacon : NSObject
 
@@ -158,11 +176,11 @@
 
 
 /**
- *  firmwareUpdateInfo
+ *  connectionStatus
  *
- *    Flag indicating connection status.
+ *    Property indicating connection status.
  */
-@property (readonly, nonatomic)   BOOL                    isConnected;
+@property (readonly, nonatomic)   ESTBeaconConnectionStatus connectionStatus;
 
 /**
  *  power
@@ -191,6 +209,13 @@
  *    Remaining lifetime in seconds, based on current battery level, advertising interval and broadcasting power values
  */
 @property (readonly, nonatomic)   NSTimeInterval          remainingLifetime;
+
+/**
+ *  batteryType
+ *
+ *    Beacon battery model
+ */
+@property (readonly, nonatomic)   ESTBeaconBatteryType    batteryType;
 
 /**
  *  hardwareVersion
@@ -238,9 +263,41 @@
  */
 @property (readonly, nonatomic)   ESTBeaconColor          color;
 
+/// @name Sensor related properties
+
+/**
+ *  isAccelerometerAvailable
+ *
+ *    Indicates if accelerometer available.
+ *
+ * @since Estimote OS A2.0
+ *
+ */
+@property (readonly, nonatomic)   BOOL  isAccelerometerAvailable;
+
+/**
+ *  isAccelerometerEditAvailable
+ *
+ *    Indicates if accelerometer state change is available.
+ *
+ *  @since Estimote OS A2.1
+ *  @sa    -(void)enableAccelerometer:completion:
+ */
+@property (readonly, nonatomic)   BOOL  isAccelerometerEditAvailable;
+
+/**
+ *  accelerometerEnabled
+ *
+ *  Indicates is accelerometer enabled.
+ *
+ *  @since Estimote OS A2.1
+ *  @sa    -(void)enableAccelerometer:completion:
+ */
+@property (readonly, nonatomic)    BOOL accelerometerEnabled;
+
+#pragma mark - Connection handling methods
 
 /// @name Connection handling methods
-#pragma mark - Connection handling methods
 
 /**
  * Connect to particular beacon using bluetooth.
@@ -259,6 +316,8 @@
 -(void)disconnect;
 
 #pragma mark - Methods for sensors readings
+
+/// @name Methods for sensors readings
 
 /**
  * Reads temperature value in Celsius from the beacon.
@@ -299,8 +358,9 @@
  */
 - (void)resetAccelerometerCountWithCompletion:(ESTUnsignedShortCompletionBlock)completion;
 
-/// @name Methods for writing beacon configuration
 #pragma mark - Methods for writing beacon configuration
+
+/// @name Methods for writing beacon configuration
 
 /**
  * Sets Name to the bluetooth connected beacon.
@@ -383,8 +443,21 @@
  */
 - (void)resetToFactorySettingsWithCompletion:(ESTCompletionBlock)completion;
 
-/// @name Methods for firmware update
+/**
+ * Turn on / off accelerometer in beacon.
+ *
+ * @param completion block handling operation completion
+ *
+ * @return void
+ * @since Estimote OS A2.1
+ * @sa isAccelerometerAvailable, isAccelerometerEditAvailable
+*/
+- (void)enableAccelerometer:(BOOL)enable
+                 completion:(ESTBoolCompletionBlock)completion;
+
 #pragma mark - Methods for firmware update
+
+/// @name Methods for firmware update
 
 /**
  * Verifies if new firmware version is available for download
@@ -411,8 +484,9 @@
                        completion:(ESTCompletionBlock)completion;
 
 
+#pragma mark - Utility methods
+
 /// @name utility methods
-#pragma mark - utility methods
 
 /**
  * Allows comparison between two ESTBeacon objects

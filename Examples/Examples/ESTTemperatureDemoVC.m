@@ -49,7 +49,7 @@
 {
     [super viewDidDisappear:animated];
     
-    if (self.beacon.isConnected)
+    if (self.beacon.connectionStatus == ESTBeaconConnectionStatusConnected)
     {
         [self.readTemperatureWithInterval invalidate];
         [self.beacon disconnect];
@@ -100,6 +100,14 @@
     
     self.activityLabel.text = @"Connection failed";
     self.activityLabel.textColor = [UIColor redColor];
+    
+    UIAlertView* errorView = [[UIAlertView alloc] initWithTitle:@"Connection error"
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [errorView show];
 }
 
 @end

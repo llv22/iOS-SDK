@@ -8,6 +8,7 @@
 
 #import "ESTAppDelegate.h"
 #import "ESTViewController.h"
+#import <ESTBeaconManager.h>
 
 @implementation ESTAppDelegate
 
@@ -26,7 +27,6 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                            NSFontAttributeName: [UIFont systemFontOfSize:18]}];
-    
     
     return YES;
 }

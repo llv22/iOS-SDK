@@ -1,10 +1,20 @@
-## 2.0beta (March 31, 2014)
+## 2.0.1 (July 15, 2014)
+
+Bugfixes:
+
+ - Hanging on beacons ranging (100% CPU usage) issue solved.
+
+
+## 2.0.0 (June 6, 2014)
 
 Features:
 	
+	- Estimote Cloud Integration implemented
 	- Added temperature and accelerometer support
 	- Added motionUUID to ESTBeacon
-	- Support for EstimoteOS 2.0 firmware
+	- Support for firmware EstimoteOS 2.0 and up
+	- Connection status handeld better
+	- Improved examples app
 	
 Refactoring:
 	- ESTBeacon method name changes:

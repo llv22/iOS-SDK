@@ -7,6 +7,7 @@
 //
 
 #import "ESTUpdateFirmwareDemoVC.h"
+#import <ESTBeaconManager.h>
 
 @interface ESTUpdateFirmwareDemoVC () <ESTBeaconDelegate>
 
@@ -35,7 +36,7 @@
 {
     [super viewDidLoad];
     
-    //In order to read beacon accelerometer we need to connect to it.
+    //In order to update beacon firmware we need to connect to it.
     self.beacon.delegate = self;
     [self.beacon connect];
 }
@@ -116,6 +117,22 @@
 - (void)beaconConnectionDidFail:(ESTBeacon *)beacon withError:(NSError *)error
 {
     //Beacon connection did fail. Try again.
+    
+    NSLog(@"Something went wrong. Beacon connection Did Fail. Error: %@", error);
+    
+    [self.activityIndicator stopAnimating];
+    self.activityIndicator.alpha = 0.;
+    
+    self.updateStateLabel.text = @"Connection failed";
+    self.updateStateLabel.textColor = [UIColor redColor];
+    
+    UIAlertView* errorView = [[UIAlertView alloc] initWithTitle:@"Connection error"
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [errorView show];
 }
 
 @end

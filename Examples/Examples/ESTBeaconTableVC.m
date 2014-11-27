@@ -230,7 +230,7 @@
     else
     {
         cell.textLabel.text = [NSString stringWithFormat:@"Mac Address: %@", beacon.macAddress];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"RSSI: %d", beacon.rssi];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"RSSI: %ld", (long)beacon.rssi];
     }
     
     cell.imageView.image = beacon.isSecured ? [UIImage imageNamed:@"beacon_secure"] : [UIImage imageNamed:@"beacon"];

@@ -12,7 +12,8 @@
 
 @interface ESTBeaconTableVC () <ESTBeaconManagerDelegate>
 
-@property (nonatomic, copy) void (^completionHandler)(ESTBeacon *);
+@property (nonatomic, copy)     void (^completion)(ESTBeacon *);
+@property (nonatomic, assign)   ESTScanType scanType;
 
 @property (nonatomic, strong) ESTBeaconManager *beaconManager;
 @property (nonatomic, strong) ESTBeaconRegion *region;
@@ -38,12 +39,13 @@
 
 @implementation ESTBeaconTableVC
 
-- (id)initWithCompletionHandler:(void (^)(ESTBeacon *))completionHandler
+- (id)initWithScanType:(ESTScanType)scanType completion:(void (^)(ESTBeacon *))completion
 {
     self = [super init];
     if (self)
     {
-        self.completionHandler = completionHandler;
+        self.scanType = scanType;
+        self.completion = [completion copy];
     }
     return self;
 }
@@ -54,11 +56,6 @@
     
     self.title = @"Select beacon";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                  target:self
-                                                                  action:@selector(dismiss)];
-    
     [self.tableView registerClass:[ESTTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
 }
 
@@ -68,6 +65,7 @@
     
     self.beaconManager = [[ESTBeaconManager alloc] init];
     self.beaconManager.delegate = self;
+    self.beaconManager.returnAllRangedBeaconsAtOnce = YES;
     
     /* 
      * Creates sample region object (you can additionaly pass major / minor values).
@@ -77,12 +75,74 @@
      */
     self.region = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID
                                                       identifier:@"EstimoteSampleRegion"];
-    
+
     /*
      * Starts looking for Estimote beacons.
      * All callbacks will be delivered to beaconManager delegate.
      */
-    [self.beaconManager startRangingBeaconsInRegion:self.region];
+    if (self.scanType == ESTScanTypeBeacon)
+    {
+        [self startRangingBeacons];
+    }
+    else
+    {
+        [self.beaconManager startEstimoteBeaconsDiscoveryForRegion:self.region];
+    }
+}
+
+- (void)beaconManager:(ESTBeaconManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (self.scanType == ESTScanTypeBeacon)
+    {
+        [self startRangingBeacons];
+    }
+}
+
+-(void)startRangingBeacons
+{
+    if ([ESTBeaconManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+    {
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+            /*
+             * No need to explicitly request permission in iOS < 8, will happen automatically when starting ranging.
+             */
+            [self.beaconManager startRangingBeaconsInRegion:self.region];
+        } else {
+            /*
+             * Request permission to use Location Services. (new in iOS 8)
+             * We ask for "always" authorization so that the Notification Demo can benefit as well.
+             * Also requires NSLocationAlwaysUsageDescription in Info.plist file.
+             *
+             * For more details about the new Location Services authorization model refer to:
+             * https://community.estimote.com/hc/en-us/articles/203393036-Estimote-SDK-and-iOS-8-Location-Services
+             */
+            [self.beaconManager requestAlwaysAuthorization];
+        }
+    }
+    else if([ESTBeaconManager authorizationStatus] == kCLAuthorizationStatusAuthorized)
+    {
+        [self.beaconManager startRangingBeaconsInRegion:self.region];
+    }
+    else if([ESTBeaconManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Access Denied"
+                                                        message:@"You have denied access to location services. Change this in app settings."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        
+        [alert show];
+    }
+    else if([ESTBeaconManager authorizationStatus] == kCLAuthorizationStatusRestricted)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Not Available"
+                                                        message:@"You have no access to location services."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        
+        [alert show];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -93,6 +153,7 @@
      *Stops ranging after exiting the view.
      */
     [self.beaconManager stopRangingBeaconsInRegion:self.region];
+    [self.beaconManager stopEstimoteBeaconDiscovery];
 }
 
 - (void)dismiss
@@ -102,7 +163,36 @@
 
 #pragma mark - ESTBeaconManager delegate
 
+- (void)beaconManager:(ESTBeaconManager *)manager rangingBeaconsDidFailForRegion:(ESTBeaconRegion *)region withError:(NSError *)error
+{
+    UIAlertView* errorView = [[UIAlertView alloc] initWithTitle:@"Ranging error"
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [errorView show];
+}
+
+- (void)beaconManager:(ESTBeaconManager *)manager monitoringDidFailForRegion:(ESTBeaconRegion *)region withError:(NSError *)error
+{
+    UIAlertView* errorView = [[UIAlertView alloc] initWithTitle:@"Monitoring error"
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [errorView show];
+}
+
 - (void)beaconManager:(ESTBeaconManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
+{
+    self.beaconsArray = beacons;
+    
+    [self.tableView reloadData];
+}
+
+- (void)beaconManager:(ESTBeaconManager *)manager didDiscoverBeacons:(NSArray *)beacons inRegion:(ESTBeaconRegion *)region
 {
     self.beaconsArray = beacons;
     
@@ -121,6 +211,8 @@
     return [self.beaconsArray count];
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
@@ -130,10 +222,25 @@
      */
     ESTBeacon *beacon = [self.beaconsArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Major: %@, Minor: %@", beacon.major, beacon.minor];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Distance: %.2f", [beacon.distance floatValue]];
+    if (self.scanType == ESTScanTypeBeacon)
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"Major: %@, Minor: %@", beacon.major, beacon.minor];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Distance: %.2f", [beacon.distance floatValue]];
+    }
+    else
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"Mac Address: %@", beacon.macAddress];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"RSSI: %d", beacon.rssi];
+    }
+    
+    cell.imageView.image = beacon.isSecured ? [UIImage imageNamed:@"beacon_secure"] : [UIImage imageNamed:@"beacon"];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 80;
 }
 
 #pragma mark - Table view delegate
@@ -142,10 +249,7 @@
 {
     ESTBeacon *selectedBeacon = [self.beaconsArray objectAtIndex:indexPath.row];
     
-    [self dismissViewControllerAnimated:YES completion:^{
-    
-        self.completionHandler(selectedBeacon);
-    }];
+    self.completion(selectedBeacon);
 }
 
 @end

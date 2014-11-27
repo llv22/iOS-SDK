@@ -11,12 +11,14 @@
 
 @interface ESTNotificationDemoVC () <ESTBeaconManagerDelegate>
 
+
 @property (nonatomic, strong) ESTBeacon         *beacon;
 @property (nonatomic, strong) ESTBeaconManager  *beaconManager;
 @property (nonatomic, strong) ESTBeaconRegion   *beaconRegion;
 
-@property (nonatomic, strong) UISwitch          *enterRegionSwitch;
-@property (nonatomic, strong) UISwitch          *exitRegionSwitch;
+@property (nonatomic, strong) IBOutlet UIView            *mainView;
+@property (nonatomic, strong) IBOutlet UISwitch          *enterRegionSwitch;
+@property (nonatomic, strong) IBOutlet UISwitch          *exitRegionSwitch;
 
 @end
 
@@ -36,48 +38,34 @@
 {
     [super viewDidLoad];
     
+    self.title = @"Notification Demo";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    CGRect frame = self.mainView.frame;
+    frame.origin.y = [UIScreen mainScreen].bounds.size.height - frame.size.height;
+    self.mainView.frame = frame;
 
     /*
-     * UI setup
+     * Persmission to show Local Notification.
      */
-    self.enterRegionSwitch = [UISwitch new];
-    [self.enterRegionSwitch setOn:YES animated:NO];
-    [self.enterRegionSwitch setCenter:CGPointMake(self.view.frame.size.width - 40, self.view.center.y - 20)];
-    [self.enterRegionSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.enterRegionSwitch];
-    
-    self.exitRegionSwitch = [UISwitch new];
-    [self.exitRegionSwitch setOn:YES animated:NO];
-    [self.exitRegionSwitch setCenter:CGPointMake(self.view.frame.size.width - 40, self.view.center.y + 20)];
-    [self.exitRegionSwitch addTarget:self action:@selector(switchValueChanged) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.exitRegionSwitch];
-    
-    UILabel *enterRegionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.enterRegionSwitch.center.y - 20, self.view.frame.size.width, 40)];
-    enterRegionLabel.text = @"Enter region notification";
-    [self.view addSubview:enterRegionLabel];
-    
-    UILabel *exitRegionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.exitRegionSwitch.center.y - 20, self.view.frame.size.width, 40)];
-    exitRegionLabel.text = @"Exit region notification";
-    [self.view addSubview:exitRegionLabel];
-    
-    UITextView *infoTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height - 160, self.view.frame.size.width - 40, 140)];
-    infoTextView.editable = NO;
-    infoTextView.font = [UIFont systemFontOfSize:16];
-    infoTextView.text = @"Lock the screen and go far away from the beacon until you get the exit region notification. If you come back, you will see an enter region notification.";
-    [self.view addSubview:infoTextView];
-    
-     
+    UIApplication *application = [UIApplication sharedApplication];
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+
     /*
      * BeaconManager setup.
      */
+    
     self.beaconManager = [[ESTBeaconManager alloc] init];
     self.beaconManager.delegate = self;
     
     self.beaconRegion = [[ESTBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID
                                                                  major:[self.beacon.major unsignedIntValue]
                                                                  minor:[self.beacon.minor unsignedIntValue]
-                                                            identifier:@"RegionIdentifier"];
+                                                            identifier:@"RegionIdentifier"
+                                                               secured:self.beacon.isSecured];
+
     self.beaconRegion.notifyOnEntry = self.enterRegionSwitch.isOn;
     self.beaconRegion.notifyOnExit = self.exitRegionSwitch.isOn;
     
@@ -85,6 +73,17 @@
 }
 
 #pragma mark - ESTBeaconManager delegate
+
+- (void)beaconManager:(ESTBeaconManager *)manager monitoringDidFailForRegion:(ESTBeaconRegion *)region withError:(NSError *)error
+{
+    UIAlertView* errorView = [[UIAlertView alloc] initWithTitle:@"Monitoring error"
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [errorView show];
+}
 
 - (void)beaconManager:(ESTBeaconManager *)manager didEnterRegion:(ESTBeaconRegion *)region
 {

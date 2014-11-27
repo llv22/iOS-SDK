@@ -7,12 +7,42 @@
 //
 
 #import "ESTAppDelegate.h"
+#import "ESTViewController.h"
+#import <ESTBeaconManager.h>
 
 @implementation ESTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // App ID and App Token should be provided using method below
+    // to allow beacons connection and Estimote Cloud requests possible.
+    // Both values can be found in Estimote Cloud ( http://cloud.estimote.com )
+    // in Account Settings tab.
+    
+    NSLog(@"ESTAppDelegate: APP ID and APP TOKEN are required to connect to your beacons and make Estimote API calls.");
+    [ESTBeaconManager setupAppID:nil andAppToken:nil];
+    
+    // Estimote Analytics allows you to log activity related to monitoring mechanism.
+    // At the current stage it is possible to log all enter/exit events when monitoring
+    // Particular beacons (Proximity UUID, Major, Minor values needs to be provided).
+    
+    NSLog(@"ESTAppDelegate: Analytics are turned OFF by defaults. You can enable them changing flag");
+    [ESTBeaconManager enableAnalytics:NO];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    ESTViewController* demoList = [[ESTViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    self.mainNavigation = [[UINavigationController alloc] initWithRootViewController:demoList];
+    self.window.rootViewController = self.mainNavigation;
+    
+    [self.window makeKeyAndVisible];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.490 green:0.631 blue:0.549 alpha:1.000]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                           NSFontAttributeName: [UIFont systemFontOfSize:18]}];
+    
     return YES;
 }
 							

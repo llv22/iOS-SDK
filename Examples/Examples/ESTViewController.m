@@ -15,7 +15,7 @@
 #import "ESTTemperatureDemoVC.h"
 #import "ESTAccelerometerDemoVC.h"
 #import "ESTUpdateFirmwareDemoVC.h"
-#import "ESTCloudAuthVC.h"
+#import "ESTBulkUpdaterDemoVC.h"
 
 @interface ESTDemoTableViewCell : UITableViewCell
 
@@ -49,23 +49,10 @@
     self.tableView.sectionHeaderHeight = 20;
     [self.tableView registerClass:[ESTDemoTableViewCell class] forCellReuseIdentifier:@"DemoCellIdentifier"];
     
-    UIBarButtonItem *authButton = [[UIBarButtonItem alloc] initWithTitle:@"Authorize"
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:self
-                                                                  action:@selector(authorizeBtnTapped:)];
-    self.navigationItem.rightBarButtonItem = authButton;
-    
     self.beaconDemoList = @[ @[@"Distance Demo", @"Proximity Demo",@"Notification Demo"],
                              @[@"Temperature Demo", @"Accelerometer Demo"],
-                             @[@"Update Firmware Demo", @"My beacons in Cloud Demo"]];
+                             @[@"Update Firmware Demo", @"My beacons in Cloud Demo", @"Bulk update of beacons"]];
 }
-
--(void)authorizeBtnTapped:(UIButton *)button
-{
-    ESTCloudAuthVC *cloudVC = [ESTCloudAuthVC new];
-    [self.navigationController pushViewController:cloudVC animated:YES];
-}
-
 
 #pragma mark - Table view data source
 
@@ -199,6 +186,16 @@
             {
                 demoViewController = [ESTCloudBeaconTableVC new];
                 
+                break;
+            }
+            case 2:
+            {
+                demoViewController = [[ESTBeaconTableVC alloc] initWithScanType:ESTScanTypeBeacon
+                                                                     completion:^(ESTBeacon *beacon) {
+                                                                         
+                                                                         ESTBulkUpdaterDemoVC *bulkDemoVC = [[ESTBulkUpdaterDemoVC alloc] initWithBeacon:beacon];
+                                                                         [self.navigationController pushViewController:bulkDemoVC animated:YES];
+                                                                     }];
                 break;
             }
             default:

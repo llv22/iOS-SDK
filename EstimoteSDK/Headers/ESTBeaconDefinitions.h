@@ -2,7 +2,7 @@
 //  ESTBeaconDefinitions.h
 //  EstimoteSDK
 //
-//  Version : 2.0.0
+//  Version: 2.2.1
 //  Created by Marcin Klimek on 9/26/13.
 //  Copyright (c) 2013 Estimote. All rights reserved.
 //
@@ -46,19 +46,6 @@ typedef NS_ENUM(int, ESTBeaconFirmwareState)
     ESTBeaconFirmwareStateApp
 };
 
-typedef NS_ENUM(int, ESTEvent)
-{
-    ESTEventEnterRegion,
-    ESTEventExitRegion
-};
-
-typedef NS_ENUM(int, ESTProximity)
-{
-    ESTProximityImmediate,
-    ESTProximityNear,
-    ESTProximityFar
-};
-
 typedef NS_ENUM(int, ESTBeaconColor)
 {
     ESTBeaconColorUnknown = 0,
@@ -81,6 +68,28 @@ typedef NS_ENUM(int, ESTBeaconConnectionStatus)
     ESTBeaconConnectionStatusConnecting,
     ESTBeaconConnectionStatusConnected,
     ESTBeaconConnectionStatusDisconnected
+};
+
+typedef NS_ENUM(int, ESTBeaconPowerSavingMode)
+{
+    ESTBeaconPowerSavingModeUnknown,
+    ESTBeaconPowerSavingModeOn,
+    ESTBeaconPowerSavingModeOff,
+    ESTBeaconPowerSavingModeNotAvailable
+};
+
+typedef NS_ENUM(int, ESTBeaconEstimoteSecureUUID)
+{
+    ESTBeaconEstimoteSecureUUIDUnknown,
+    ESTBeaconEstimoteSecureUUIDOn,
+    ESTBeaconEstimoteSecureUUIDOff,
+    ESTBeaconEstimoteSecureUUIDNotAvailable
+};
+
+typedef NS_ENUM(int, ESTBeaconCharInfoType)
+{
+    ESTBeaconCharInfoTypeWriteRead,
+    ESTBeaconCharInfoTypeWriteOnly
 };
 
 typedef void(^ESTCompletionBlock)(NSError* error);

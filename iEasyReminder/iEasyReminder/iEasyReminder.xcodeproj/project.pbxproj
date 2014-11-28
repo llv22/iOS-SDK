@@ -464,6 +464,7 @@
 					../../EstimoteSDK/Headers,
 				);
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					../../EstimoteSDK,
@@ -474,6 +475,7 @@
 					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -496,6 +498,7 @@
 					../../EstimoteSDK/Headers,
 				);
 				INFOPLIST_FILE = "iEasyReminder/iEasyReminder-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					../../EstimoteSDK,
@@ -506,6 +509,7 @@
 					Reveal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

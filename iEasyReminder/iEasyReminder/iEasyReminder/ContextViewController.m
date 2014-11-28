@@ -98,6 +98,8 @@ static NSInteger activityCount = 0;
             self->_cllocationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
             // Set a movement threshold for new events.
             self->_cllocationManager.distanceFilter = 500; // meters
+            [self->_cllocationManager requestAlwaysAuthorization];
+            
             [self->_cllocationManager startUpdatingLocation];
             [[UIApplication sharedApplication]showNetworkActivityIndicator];
         }
@@ -298,7 +300,7 @@ static NSInteger activityCount = 0;
         // see http://blog.sina.com.cn/s/blog_8c87ba3b0101i4oh.html and http://www.ggkf.com/ios/changing-the-tint-color-of-uibarbuttonitem
         if (isCurrentCity) {
             self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:strHostedCity
-                                                                                    style:UIBarButtonItemStyleBordered
+                                                                                    style:UIBarButtonItemStyleDone
                                                                                    target:nil
                                                                                    action:nil];
             [locateStuffViewController setClocation:self.clocation];

@@ -117,14 +117,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F142DB6818F2B21F00B2DE66 = {
+		E179F0211A3EDF8700BEFB65 /* Test */ = {
 			isa = PBXGroup;
 			children = (
 				FFC15DC21950369200D9F7BF /* Location.gpx */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
+		F142DB6818F2B21F00B2DE66 = {
+			isa = PBXGroup;
+			children = (
 				F1BD787218FA4C6100FDA066 /* Readme.rtfd */,
 				F142DB7A18F2B21F00B2DE66 /* iEasyReminder */,
 				F142DB9C18F2B21F00B2DE66 /* iEasyReminderTests */,
 				F142DB7318F2B21F00B2DE66 /* Frameworks */,
+				E179F0211A3EDF8700BEFB65 /* Test */,
 				F142DB7218F2B21F00B2DE66 /* Products */,
 			);
 			sourceTree = "<group>";
